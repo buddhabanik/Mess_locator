@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_mess__content_acitivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.buddha.mess_management.Mess_ContentAcitivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:text="Member Initialization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="Initialization"
+            android:id="@+id/button_initialization"
+            android:ems="12"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_light"/>
+
+        <Button
+            android:text="Set Guest Password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="SetGuestPassword"
+            android:id="@+id/button_setguestpassword"
+            android:layout_below="@id/button_initialization"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_light"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@id/button_initialization"
+            android:layout_alignRight="@id/button_initialization"/>
+
+        <Button
+            android:text="Current Information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="CurrentInfo"
+            android:id="@+id/button_currentInfo"
+            android:layout_below="@+id/button_setguestpassword"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_light"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@id/button_initialization"
+            android:layout_alignRight="@id/button_initialization"/>
+
+        <Button
+            android:text="Update member balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="UpdateBalance"
+            android:id="@+id/button_updatebalance"
+            android:layout_below="@id/button_currentInfo"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_light"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@id/button_initialization"
+            android:layout_alignRight="@id/button_initialization"/>
+
+
+
+        <Button
+            android:text="Daily Info Reservation"
+            android:layout_width="wrap_content"
+            android:onClick="DailyInfoReservation"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_dailyinfo"
+            android:layout_below="@id/button_updatebalance"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_light"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@id/button_initialization"
+            android:layout_alignRight="@id/button_initialization"/>
+
+
+
+        <Button
+            android:text="Current Meal record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="MealRecords"
+            android:id="@+id/button_mealrecords"
+            android:layout_below="@id/button_dailyinfo"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_light"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@id/button_initialization"
+            android:layout_alignRight="@id/button_initialization"/>
+    </RelativeLayout>
+</ScrollView>

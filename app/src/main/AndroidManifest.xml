@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.buddha.mess_management">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Mess_activity" />
+        <activity
+            android:name=".InsertDataActivity"
+            android:label="@string/title_activity_insert_data"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Update_Activity" />
+        <activity android:name=".Mess_ContentAcitivity" />
+        <activity android:name=".DailyInfoActivity" />
+        <activity android:name=".MealRecordActivity" />
+        <activity android:name=".Register" />
+        <activity android:name=".MessInformaationActivity" />
+        <activity android:name=".AddDataInformationActivity" />
+        <activity android:name=".DisplayDataActivity" />
+        <activity android:name=".MonthSelectionActivity" />
+        <activity android:name=".GuestLoginMealActivity"></activity>
+    </application>
+
+</manifest>

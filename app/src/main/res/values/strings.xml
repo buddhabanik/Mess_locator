@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Mess_management</string>
+    <string name="title_activity_insert_data">InsertDataActivity</string>
+    <string-array name="member_array">
+        <item>Select Member Name</item>
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+</resources>
