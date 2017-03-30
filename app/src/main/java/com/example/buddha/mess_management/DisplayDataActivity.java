@@ -45,7 +45,6 @@ public class DisplayDataActivity extends AppCompatActivity {
                 buffer.append("number of seat = " + selectedItem.getNumberofseat() + "\n");
                 buffer.append("contact number = " + selectedItem.getContractnumber() + "\n");
                 buffer.append("description = " + selectedItem.getDescription() + "\n\n");
-
                 showMessage("Post",buffer.toString());
 
             }

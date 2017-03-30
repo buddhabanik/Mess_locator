@@ -50,7 +50,8 @@ public class AddDataInformationActivity extends AppCompatActivity {
                 else if ( contractNumber.isEmpty())
                     validate_message += "*Contract number field is required\n";
 
-                if(validate_message.isEmpty()) {
+                if(validate_message.isEmpty())
+                {
                     backgroundWorker.execute("AddInfoData", userName, Address, Rent, numberOfseat, contractNumber, description);
                 }
                 else
