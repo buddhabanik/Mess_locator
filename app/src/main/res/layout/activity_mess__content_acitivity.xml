@@ -100,5 +100,20 @@
             android:layout_centerHorizontal="true"
             android:layout_alignLeft="@id/button_initialization"
             android:layout_alignRight="@id/button_initialization"/>
+
+        <Button
+            android:text="Meal Information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="mealInfo"
+            android:id="@+id/button_mealInfo"
+            android:layout_below="@id/button_mealrecords"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_light"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@id/button_initialization"
+            android:layout_alignRight="@id/button_initialization"/>
     </RelativeLayout>
+
 </ScrollView>

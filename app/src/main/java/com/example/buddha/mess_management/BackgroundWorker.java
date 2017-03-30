@@ -35,7 +35,7 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
     Context context;
     TextView textView;
     AlertDialog alertDialog;
-    String server_url="http://192.168.0.103";
+    String server_url="http://192.168.0.104";
     BackgroundWorker(Context ct)
     {
         context=ct;
@@ -975,6 +975,65 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
                         URLEncoder.encode("month","UTF-8")+"="+URLEncoder.encode( month,"UTF-8")+"&"+
                         URLEncoder.encode("year","UTF-8")+"="+URLEncoder.encode(year,"UTF-8") + "&" +
                         URLEncoder.encode("status","UTF-8")+"="+URLEncoder.encode(status,"UTF-8");
+
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+
+                InputStream inputStream=httpURLConnection.getInputStream();
+                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader( inputStream ));
+                StringBuilder stringBuilder=new StringBuilder();
+                String result="",line;
+                while( (line=bufferedReader.readLine()) != null)
+                {
+                    stringBuilder.append( line+"\n");
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return stringBuilder.toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        else if( type.equals("updateMealRecord"))
+        {
+            server_url +="/Mess_locator/updateMealRecord.php";
+            try {
+                String username = params[1];
+                String month = params[2];
+                String year = params[3];
+                String member_name = params[4];
+                String breakfastMeal = params[5];
+                String lunchMeal = params[6];
+                String dinnerMeal = params[7];
+                String shopCost = params[8];
+                String day = params[9];
+
+                URL url=new URL(server_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream= httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+
+                String post_data=  URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(username,"UTF-8")+"&"+
+                        URLEncoder.encode("month","UTF-8")+"="+URLEncoder.encode( month,"UTF-8")+"&"+
+                        URLEncoder.encode("year","UTF-8")+"="+URLEncoder.encode(year,"UTF-8") + "&" +
+                        URLEncoder.encode("member_name","UTF-8")+"="+URLEncoder.encode(member_name,"UTF-8") + "&" +
+                        URLEncoder.encode("breakfastMeal","UTF-8")+"="+URLEncoder.encode(breakfastMeal,"UTF-8") + "&" +
+                        URLEncoder.encode("lunchMeal","UTF-8")+"="+URLEncoder.encode(lunchMeal,"UTF-8") + "&" +
+                        URLEncoder.encode("dinnerMeal","UTF-8")+"="+URLEncoder.encode(dinnerMeal,"UTF-8") + "&" +
+                        URLEncoder.encode("shopCost","UTF-8")+"="+URLEncoder.encode(shopCost,"UTF-8") + "&" +
+                        URLEncoder.encode("day","UTF-8")+"="+URLEncoder.encode(day,"UTF-8");
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();

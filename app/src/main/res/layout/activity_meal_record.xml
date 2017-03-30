@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_meal_record"
     android:layout_width="match_parent"
@@ -10,4 +10,169 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.buddha.mess_management.MealRecordActivity">
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Meal Information"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="20dp"
+            android:id="@+id/textView_title"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_title"
+            android:text="Current Month and Year : "
+            android:layout_marginTop="10dp"
+            android:id="@+id/textView_month"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_month"
+            android:text="Select a day : "
+            android:layout_marginTop="25dp"
+            android:id="@+id/textView_day"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_day"
+            android:layout_below="@id/textView_month"
+            android:layout_toRightOf="@id/textView_day"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_day"
+            android:text="Shopping cost : "
+            android:layout_marginTop="25dp"
+            android:id="@+id/textView_shopCost"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint=""
+            android:inputType="number"
+            android:ems="3"
+            android:id="@+id/editText_shopCost"
+            android:layout_below="@id/textView_day"
+            android:layout_toRightOf="@id/textView_shopCost"
+            android:layout_margin="10dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_shopCost"
+            android:text="Select a member : "
+            android:layout_marginTop="25dp"
+
+            android:id="@+id/textView_member"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_member"
+            android:layout_below="@id/textView_shopCost"
+            android:layout_toRightOf="@id/textView_member"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_member"
+            android:text="Meals taken by member on day 0 : "
+            android:layout_marginTop="25dp"
+            android:id="@+id/textView_mealInfo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_mealInfo"
+            android:text="Breakfast meal : "
+            android:layout_marginTop="23dp"
+            android:id="@+id/textView_title1"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint=""
+            android:inputType="number"
+            android:ems="3"
+            android:id="@+id/editText_breakMeal"
+            android:layout_below="@id/textView_mealInfo"
+            android:layout_toRightOf="@id/textView_title1"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_title1"
+            android:text="Lunch meal : "
+            android:layout_marginTop="23dp"
+            android:id="@+id/textView_title2"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint=""
+            android:inputType="number"
+            android:ems="3"
+            android:id="@+id/editText_lunchMeal"
+            android:layout_below="@id/textView_title1"
+            android:layout_toRightOf="@id/textView_title2"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_title2"
+            android:text="Dinner meal : "
+            android:layout_marginTop="23dp"
+            android:id="@+id/textView_title3"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint=""
+            android:inputType="number"
+            android:ems="3"
+            android:id="@+id/editText_dinnerMeal"
+            android:layout_below="@id/textView_title2"
+            android:layout_toRightOf="@id/textView_title3"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:text="Edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_title3"
+            android:layout_marginTop="10dp"
+            android:id="@+id/button_edit" />
+
+        <Button
+            android:text="Save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_title3"
+            android:layout_toRightOf="@id/button_edit"
+            android:layout_marginTop="10dp"
+            android:id="@+id/button_save" />
+
+
+
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -24,9 +23,10 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
 
     final Context context = this;
 
-  //  public static String userName="";
+    public static String userName="";
     public static int  selectedMonthNo;
-    public  static  String selectedYear="";
+    public  static  String selectedYear="",selectedMonth;
+
     Button initializationbtn,updatebtn, currentinfobtn,dailyInforeservation,mealRecord ;
     public final Database myDatabase =  new Database(this);
 
@@ -34,7 +34,6 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mess__content_acitivity);
         initializationbtn=(Button)findViewById(R.id.button_initialization);
@@ -44,7 +43,21 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
         mealRecord=(Button)findViewById(R.id.button_mealrecords);
 
         SharedPreferences prefs=getSharedPreferences("MYPREFS",0);
-        String userName=prefs.getString("username","");
+        userName=prefs.getString("username","");
+        selectedMonthNo=Integer.parseInt(prefs.getString("selectedMonthNo","0"));
+        selectedYear=prefs.getString("selectedYear","");
+        if(selectedMonthNo==1)  selectedMonth="January";
+        else if(selectedMonthNo==2) selectedMonth="February";
+        else if(selectedMonthNo==3) selectedMonth="March";
+        else if(selectedMonthNo==4) selectedMonth="April";
+        else if(selectedMonthNo==5) selectedMonth="May";
+        else if(selectedMonthNo==6) selectedMonth="June";
+        else if(selectedMonthNo==7) selectedMonth="July";
+        else if(selectedMonthNo==8) selectedMonth="August";
+        else if(selectedMonthNo==9) selectedMonth="September";
+        else if(selectedMonthNo==10) selectedMonth="October";
+        else if(selectedMonthNo==11) selectedMonth="November";
+        else if(selectedMonthNo==12) selectedMonth="December";
         System.out.println("username sfdsfffdsfdsfs    >>>>>>>>>>>> ..."+userName);
 
         getCurrentMonthYear();
@@ -65,20 +78,20 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
             JSONObject jsonObject=new JSONObject(res);
             JSONArray jsonArray=jsonObject.getJSONArray("data");
             System.out.println("length         >>>>>>>>>>> "+jsonArray.length());
-       //     JSONObject individual = jsonArray.getJSONObject(0);
-        //    System.out.println("month        >>.." + individual.getString("current_month") + "year        >>>>> " + individual.getString("current_year"));
+            JSONObject individual = jsonArray.getJSONObject(0);
+            System.out.println("month        >>.." + individual.getString("current_month") + "year        >>>>> " + individual.getString("current_year"));
 
 
             if(jsonArray.length() > 0)
             {
-                JSONObject individual = jsonArray.getJSONObject(0);
+                individual = jsonArray.getJSONObject(0);
                 System.out.println("month        >>.." + individual.getString("current_month") + "year        >>>>> " + individual.getString("current_year"));
-                selectedMonthNo=Integer.parseInt(individual.getString("current_month"));
-                selectedYear= ( individual.getString("current_year"));
+                selectedMonthNo=Integer.parseInt( individual.getString("current_month"));
+                selectedYear=individual.getString("current_year");
             }
             else
             {
-                selectedMonthNo= 0 ;
+                selectedMonthNo=0;
                 selectedYear="";
             }
 
@@ -137,18 +150,18 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
                                 try{
                                     SharedPreferences prefs=getSharedPreferences("MYPREFS",0);
                                     String userName=prefs.getString("username","");
-                                BackgroundWorker backgroundWorker=new BackgroundWorker(Mess_ContentAcitivity.this);
-                                res = backgroundWorker.execute("setGuestPassword",userName,userInput.getText().toString()).get();
-                                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       "+userInput.getText().toString() );
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (ExecutionException e) {
-                                e.printStackTrace();
-                            }
+                                    BackgroundWorker backgroundWorker=new BackgroundWorker(Mess_ContentAcitivity.this);
+                                    res = backgroundWorker.execute("setGuestPassword",userName,userInput.getText().toString()).get();
+                                    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       "+userInput.getText().toString() );
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                } catch (ExecutionException e) {
+                                    e.printStackTrace();
+                                }
 
                                 Toast.makeText(Mess_ContentAcitivity.this, res , Toast.LENGTH_LONG).show();
 
-                            //    result.setText(userInput.getText()); //save the result
+                                //    result.setText(userInput.getText()); //save the result
                             }
                         })
                 .setNegativeButton("Cancel",
@@ -168,12 +181,6 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
     public void CurrentInfo(View v)
     {
 
-        SharedPreferences prefs=getSharedPreferences("MYPREFS",0);
-        String userName=prefs.getString("username","");
-        selectedMonthNo=Integer.parseInt(prefs.getString("selectedMonthNo","0"));
-        selectedYear=prefs.getString("selectedYear","");
-
-        float meal_rate=0;
 
         try {
             BackgroundWorker backgroundWorker = new BackgroundWorker(Mess_ContentAcitivity.this);
@@ -189,7 +196,7 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
                 System.out.println("...............  " + individual.getString("total_money") + "            ........." + individual.getString("total_cost") + "                   .............." + individual.getString("total_meal"));
 
 
-                meal_rate = (float) (Integer.parseInt(individual.getString("total_cost")) / (Float.valueOf(individual.getString("total_meal"))));
+                float meal_rate = (float) (Integer.parseInt(individual.getString("total_cost")) / (Float.valueOf(individual.getString("total_meal"))));
 
 
                 buffer.append("Total money       :" + individual.getString("total_money") + "\n");
@@ -220,9 +227,7 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
                     buffer.append("member name        :" + individual2.getString("member_name") + "\n");
                     buffer.append("Tolal money        :" + individual2.getString("total_amount") + "\n");
                     buffer.append("Tolal meal        :" + individual2.getString("total_meal") + "\n");
-                 //   buffer.append("Tolal cost        :" + individual2.getString("total_cost") + "\n\n");
-                    float totalMeal=Float.parseFloat(individual2.getString("total_meal"));
-                    buffer.append("Tolal cost        :" +(float) (meal_rate*totalMeal) + "\n\n");
+                    buffer.append("Tolal cost        :" + individual2.getString("total_cost") + "\n\n");
 
                     countObject++;
                 }
@@ -253,35 +258,54 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
     }
     public void MealRecords(View v)
     {
-      //  Intent intent=new Intent(Mess_ContentAcitivity.this,  MealRecordActivity.class);
-       // startActivity(intent);
+        StringBuffer buffer = new StringBuffer();
+        try {
+            BackgroundWorker backgroundWorker = new BackgroundWorker(Mess_ContentAcitivity.this);
+            System.out.println(">>>>>>>>    "+userName+"        >>>>>>>  "+selectedMonthNo+"           >>>>>>>>>>>>>>>  "+selectedYear);
+            String res = backgroundWorker.execute("getMealRecord",userName, Integer.toString(selectedMonthNo), selectedYear).get();
 
-        String title,message;
-        Cursor res=myDatabase.GetData2();
-        if(res.getCount() == 0)
-        {
-            // showMessage("Error!","Nothing is found");
-            title="Error!";
-            message="Nothing to show";
-        }
 
-        else {
-            StringBuffer buffer = new StringBuffer();
-
-            while (res.moveToNext()) {
-              //  buffer.append("ID :" + res.getString(0) + "\n");
-                buffer.append("Day           :" + res.getString(1) + "\n");
-                buffer.append("Name          :" + res.getString(2) + "\n");
-                buffer.append("Breakfastmeal :" + res.getString(3) +"\n");
-                buffer.append("Lunchmeal     :" + res.getString(4) + "\n");
-                buffer.append("Dinnermeal    :" + res.getString(5) + "\n\n");
-
+            System.out.println("  <<<<<<<<<<<"+res);
+            JSONObject jsonObject=new JSONObject(res);
+            JSONArray jsonArray=jsonObject.getJSONArray("meal_record");
+            if(jsonArray.length() > 0) {
+                int count = 0;
+                buffer.append("Current Month     : " + selectedMonth +", " +selectedYear + "\n");
+                int dayFlag = 0;
+                while (count < jsonArray.length()) {
+                    JSONObject individual = jsonArray.getJSONObject(count);
+                    int cday = Integer.parseInt(individual.getString("day"));
+                    if(dayFlag!= cday) {
+                        dayFlag = cday;
+                        buffer.append("Day           : " + individual.getString("day") + "\n");
+                        buffer.append("Shopping Cost : " + individual.getString("shopCost") + "\n\n");
+                    }
+                    buffer.append("Name          :" + individual.getString("member_name") + "\n");
+                    buffer.append("Breakfastmeal :" + individual.getString("breakfastMeal") +"\n");
+                    buffer.append("Lunchmeal     :" + individual.getString("lunchMeal") + "\n");
+                    buffer.append("Dinnermeal    :" + individual.getString("dinnerMeal") + "\n\n");
+                    count++;
+                }
+            }
+            else
+            {
+                buffer.append("No Data Found!");
             }
 
-            title = "Daily Meal Information";
-            message = buffer.toString();
+            showMessage("MEAL INFORMATION",buffer.toString());
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        showMessage( title, message);
+    }
+
+    public void mealInfo(View v){
+        Intent intent=new Intent(Mess_ContentAcitivity.this, MealRecordActivity.class);
+        startActivity(intent);
     }
 
     public void showMessage(String title,String message)
