@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddDataInformationActivity extends AppCompatActivity {
 
@@ -53,6 +54,8 @@ public class AddDataInformationActivity extends AppCompatActivity {
                 if(validate_message.isEmpty())
                 {
                     backgroundWorker.execute("AddInfoData", userName, Address, Rent, numberOfseat, contractNumber, description);
+                    Toast.makeText(AddDataInformationActivity.this, "Your Data is Posted", Toast.LENGTH_LONG).show();
+                    finish();
                 }
                 else
                 {

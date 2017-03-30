@@ -35,7 +35,7 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
     Context context;
     TextView textView;
     AlertDialog alertDialog;
-    String server_url="http://192.168.0.103";
+    String server_url="http://192.168.0.104";
     BackgroundWorker(Context ct)
     {
         context=ct;
