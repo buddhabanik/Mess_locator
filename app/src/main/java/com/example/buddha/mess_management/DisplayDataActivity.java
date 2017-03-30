@@ -80,7 +80,7 @@ public class DisplayDataActivity extends AppCompatActivity {
     public void showMessage(String title,String message)
     {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-       builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+          builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
            @Override
            public void onClick(DialogInterface dialogInterface, int i) {
 
