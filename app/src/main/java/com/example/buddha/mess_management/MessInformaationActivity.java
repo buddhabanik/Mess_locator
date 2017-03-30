@@ -93,6 +93,7 @@ public class MessInformaationActivity extends AppCompatActivity {
         BackgroundWorker backgroundWorker=new BackgroundWorker(this);
         SharedPreferences prefs = getSharedPreferences("MYPREFS",0);
         String user=prefs.getString("usernamePost","");
+        System.out.println(">>>>>>>>>>>>MyPost              .........."+user);
         backgroundWorker.execute("showMypost", user);
     }
 

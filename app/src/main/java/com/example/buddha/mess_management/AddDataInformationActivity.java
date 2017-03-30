@@ -33,13 +33,30 @@ public class AddDataInformationActivity extends AppCompatActivity {
         saveDatabutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String validate_message = "";
+
                 Address=editaddress.getText().toString();
                 Rent=editrent.getText().toString();
                 numberOfseat=editnumberofseat.getText().toString();
                 contractNumber=editcontractnumber.getText().toString();
                 description=editdescription.getText().toString();
 
-                backgroundWorker.execute("AddInfoData", userName ,Address, Rent, numberOfseat, contractNumber,description);
+                if (Address.isEmpty())
+                    validate_message += "*address required\n";
+                else if (Rent.isEmpty())
+                    validate_message += "*Rent field is required\n";
+                else if (numberOfseat.isEmpty())
+                    validate_message += "*The number of available seat is required\n";
+                else if ( contractNumber.isEmpty())
+                    validate_message += "*Contract number field is required\n";
+
+                if(validate_message.isEmpty()) {
+                    backgroundWorker.execute("AddInfoData", userName, Address, Rent, numberOfseat, contractNumber, description);
+                }
+                else
+                {
+                    showMessage("Error!",validate_message);
+                }
 
             }
         });

@@ -34,6 +34,7 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mess__content_acitivity);
         initializationbtn=(Button)findViewById(R.id.button_initialization);

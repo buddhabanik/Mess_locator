@@ -35,7 +35,7 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
     Context context;
     TextView textView;
     AlertDialog alertDialog;
-    String server_url="http://192.168.0.107";
+    String server_url="http://192.168.0.103";
     BackgroundWorker(Context ct)
     {
         context=ct;
@@ -214,6 +214,48 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
             }
         }
 
+
+        // get only the userlogin mess information
+        else if( type.equals("showMypost"))
+        {
+            server_url +="/Mess_locator/get_jsondata_mypost.php";
+            try {
+                String username=params[1];
+
+                URL url=new URL(server_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream= httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+
+                String post_data=  URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(username,"UTF-8");
+
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream=httpURLConnection.getInputStream();
+                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream ));
+                StringBuilder stringBuilder=new StringBuilder();
+                String line;
+                while( (line=bufferedReader.readLine()) != null)
+                {
+                    stringBuilder.append( line+"\n");
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return stringBuilder.toString();
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         //to update the month table in database
         else if(type.equals("initMonth"))
@@ -1010,6 +1052,12 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
             }
         }
         else if(type.equals("shownewpost"))
+        {
+            Intent intent=new Intent( context, DisplayDataActivity.class);
+            intent.putExtra("json_data",result);
+            context.startActivity(intent);
+        }
+        else if(type.equals("showMypost"))
         {
             Intent intent=new Intent( context, DisplayDataActivity.class);
             intent.putExtra("json_data",result);
