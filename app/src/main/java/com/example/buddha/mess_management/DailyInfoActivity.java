@@ -388,7 +388,8 @@ public class DailyInfoActivity extends AppCompatActivity {
 
                     try {
                         BackgroundWorker backgroundWorker = new BackgroundWorker(DailyInfoActivity.this);
-                        res = backgroundWorker.execute("initMealRecord",USERNAME,Integer.toString(selectedMonthNo),selectedYear,selectMember,Integer.toString(currentDay),selectBreakfastmeal,selectLunchmeal,selectDinnermeal,costOfShopping).get();
+                        float breakfastmeal=Float.valueOf(selectBreakfastmeal)/2 ;
+                        res = backgroundWorker.execute("initMealRecord",USERNAME,Integer.toString(selectedMonthNo),selectedYear,selectMember,Integer.toString(currentDay),String.valueOf( breakfastmeal),selectLunchmeal,selectDinnermeal,costOfShopping).get();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
@@ -479,6 +480,7 @@ public class DailyInfoActivity extends AppCompatActivity {
 
                             Intent intent=new Intent( DailyInfoActivity.this, Mess_ContentAcitivity.class);
                             startActivity(intent);
+                            finish();
                         }
 
                         Toast.makeText(DailyInfoActivity.this, "Data is Inserted", Toast.LENGTH_LONG).show();

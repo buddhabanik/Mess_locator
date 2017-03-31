@@ -94,8 +94,8 @@ public class AddNewMember extends AppCompatActivity {
                 }
 
 
-                if (validate_message.isEmpty()) {
-
+                if (validate_message.isEmpty())
+                {
                     String res2="";
                     try {
 

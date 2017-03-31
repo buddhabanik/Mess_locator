@@ -203,6 +203,7 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
     {
 
 
+        float meal_rate= (float) 0.0;
         try {
             BackgroundWorker backgroundWorker = new BackgroundWorker(Mess_ContentAcitivity.this);
             System.out.println(">>>>>>>>    "+userName+"        >>>>>>>  "+selectedMonthNo+"           >>>>>>>>>>>>>>>  "+selectedYear);
@@ -217,7 +218,7 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
                 System.out.println("...............  " + individual.getString("total_money") + "            ........." + individual.getString("total_cost") + "                   .............." + individual.getString("total_meal"));
 
 
-                float meal_rate = (float) (Integer.parseInt(individual.getString("total_cost")) / (Float.valueOf(individual.getString("total_meal"))));
+                meal_rate = (float) (Integer.parseInt(individual.getString("total_cost")) / (Float.valueOf(individual.getString("total_meal"))));
 
 
                 buffer.append("Total money       :" + individual.getString("total_money") + "\n");
@@ -248,7 +249,8 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
                     buffer.append("member name        :" + individual2.getString("member_name") + "\n");
                     buffer.append("Tolal money        :" + individual2.getString("total_amount") + "\n");
                     buffer.append("Tolal meal        :" + individual2.getString("total_meal") + "\n");
-                    buffer.append("Tolal cost        :" + individual2.getString("total_cost") + "\n\n");
+                  //  buffer.append("Tolal cost        :" + individual2.getString("total_cost") + "\n\n");
+                    buffer.append("Tolal cost        :" +Float.valueOf(individual2.getString("total_meal"))*(meal_rate) + "\n\n");
 
                     countObject++;
                 }
