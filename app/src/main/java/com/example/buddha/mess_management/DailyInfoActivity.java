@@ -388,8 +388,8 @@ public class DailyInfoActivity extends AppCompatActivity {
 
                     try {
                         BackgroundWorker backgroundWorker = new BackgroundWorker(DailyInfoActivity.this);
-                        float breakfastmeal=Float.valueOf(selectBreakfastmeal)/2 ;
-                        res = backgroundWorker.execute("initMealRecord",USERNAME,Integer.toString(selectedMonthNo),selectedYear,selectMember,Integer.toString(currentDay),String.valueOf( breakfastmeal),selectLunchmeal,selectDinnermeal,costOfShopping).get();
+                       // float breakfastmeal=Float.valueOf(selectBreakfastmeal)/2 ;
+                        res = backgroundWorker.execute("initMealRecord",USERNAME,Integer.toString(selectedMonthNo),selectedYear,selectMember,Integer.toString(currentDay),selectBreakfastmeal,selectLunchmeal,selectDinnermeal,costOfShopping).get();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
