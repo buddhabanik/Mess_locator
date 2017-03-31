@@ -102,6 +102,10 @@ public class AddNewMember extends AppCompatActivity {
                         BackgroundWorker backgroundWorker2 = new BackgroundWorker( AddNewMember.this);
                         res2 = backgroundWorker2.execute("initMember", userName, memberName,selectedMonth,selectedYear, Amount ).get();
 
+                        //update total money
+                        BackgroundWorker backgroundWorker = new BackgroundWorker(AddNewMember.this);
+                        String res = backgroundWorker.execute("updateMoneyInResult",userName, selectedMonth,selectedYear, Amount ).get();
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
