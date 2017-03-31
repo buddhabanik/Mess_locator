@@ -27,7 +27,7 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
     public static int  selectedMonthNo;
     public  static  String selectedYear="",selectedMonth;
 
-    Button initializationbtn,updatebtn, currentinfobtn,dailyInforeservation,mealRecord ;
+    Button initializationbtn,updatebtn, currentinfobtn,dailyInforeservation,mealRecord,addNewMember;
     public final Database myDatabase =  new Database(this);
 
 
@@ -41,6 +41,7 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
         currentinfobtn=(Button)findViewById(R.id.button_currentInfo);
         dailyInforeservation=(Button)findViewById(R.id.button_dailyinfo);
         mealRecord=(Button)findViewById(R.id.button_mealrecords);
+        addNewMember=(Button)findViewById(R.id.button_addNewMember);
 
         SharedPreferences prefs=getSharedPreferences("MYPREFS",0);
         userName=prefs.getString("username","");
@@ -117,11 +118,31 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
         Intent intent=new Intent(Mess_ContentAcitivity.this, MonthSelectionActivity.class);
         startActivity(intent);
     }
+
+    public  void addNewMember(View v)
+    {
+        SharedPreferences prefs=getSharedPreferences("MYPREFS",0);
+        String userName=prefs.getString("username","");
+        String selectedMonth=prefs.getString("selectedMonthNo","");
+        String selectedYear=prefs.getString("selectedYear","");
+        if(selectedMonth.equals("0") && selectedYear.equals(""))
+        {
+            showMessage("Error!","First select Month & year\nthen add member\n");
+        }
+        else
+        {
+            startActivity(new Intent(Mess_ContentAcitivity.this,AddNewMember.class));
+        }
+
+    }
+
     public void UpdateBalance(View v)
     {
         Intent intent=new Intent(Mess_ContentAcitivity.this, Update_Activity.class);
         startActivity(intent);
     }
+
+
 
     public void SetGuestPassword(View view)
     {

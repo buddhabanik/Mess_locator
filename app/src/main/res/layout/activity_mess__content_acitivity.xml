@@ -28,12 +28,26 @@
             android:background="@android:color/holo_blue_light"/>
 
         <Button
+            android:text="Add new member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="addNewMember"
+            android:id="@+id/button_addNewMember"
+            android:layout_below="@+id/button_initialization"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_light"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@id/button_initialization"
+            android:layout_alignRight="@id/button_initialization"/>
+
+        <Button
             android:text="Set Guest Password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="SetGuestPassword"
             android:id="@+id/button_setguestpassword"
-            android:layout_below="@id/button_initialization"
+            android:layout_below="@id/button_addNewMember"
             android:layout_marginTop="10dp"
             android:textColor="@android:color/white"
             android:background="@android:color/holo_blue_light"
