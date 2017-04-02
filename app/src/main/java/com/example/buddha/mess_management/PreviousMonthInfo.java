@@ -113,6 +113,8 @@ public class PreviousMonthInfo extends AppCompatActivity {
 
                             meal_rate = (float) (Integer.parseInt(individual.getString("total_cost")) / (Float.valueOf(individual.getString("total_meal"))));
 
+                            buffer.append("Month :" +selectedMonth  + "\n");
+                            buffer.append("Year  :" + selectedYear + "\n");
 
                             buffer.append("Total money       :" + individual.getString("total_money") + "\n");
                             buffer.append("Total spent money :" + individual.getString("total_cost") + "\n");
