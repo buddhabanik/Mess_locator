@@ -2,6 +2,7 @@ package com.example.buddha.mess_management;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -45,7 +46,16 @@ public class DisplayDataActivity extends AppCompatActivity {
                 buffer.append("number of seat = " + selectedItem.getNumberofseat() + "\n");
                 buffer.append("contact number = " + selectedItem.getContractnumber() + "\n");
                 buffer.append("description = " + selectedItem.getDescription() + "\n\n");
-                showMessage("Post",buffer.toString());
+                Intent intent=new Intent( DisplayDataActivity.this, PostDetailsActivity.class);
+                intent.putExtra("id",selectedItem.getId());
+                intent.putExtra("address",selectedItem.getAddress());
+                intent.putExtra("rent",selectedItem.getRent());
+                intent.putExtra("numberOfSeat",selectedItem.getNumberofseat());
+                intent.putExtra("contactNumber",selectedItem.getContractnumber());
+                intent.putExtra("description",selectedItem.getDescription());
+                intent.putExtra("previous",getIntent().getExtras().getString("previous"));
+                startActivity(intent);
+                //showMessage("Post",buffer.toString());
 
             }
         });
@@ -56,16 +66,17 @@ public class DisplayDataActivity extends AppCompatActivity {
             jsonObject=new JSONObject(jsonData);
             jsonArray=jsonObject.getJSONArray("mess_info");
             int count=0;
-            String address,rent,numberofseat,contractnumber,description;
+            String id,address,rent,numberofseat,contractnumber,description;
             while(count<jsonArray.length() )
             {
                 JSONObject individual=jsonArray.getJSONObject(count);
+                id = individual.getString("id");
                 address= individual.getString("address");
                 rent=individual.getString("rent");
                 numberofseat=individual.getString("number_seat");
                 contractnumber=individual.getString("contract_number");
                 description=individual.getString("description");
-                Item item=new Item(address, rent,numberofseat,contractnumber,description);
+                Item item=new Item(id,address, rent,numberofseat,contractnumber,description);
                 list.add(item);
                 itemAdapter.add(item);
                 count++;

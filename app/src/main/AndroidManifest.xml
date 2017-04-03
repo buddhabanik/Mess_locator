@@ -32,7 +32,8 @@
         <activity android:name=".DisplayDataActivity" />
         <activity android:name=".MonthSelectionActivity" />
         <activity android:name=".GuestLoginMealActivity" />
-        <activity android:name=".AddNewMember"></activity>
+        <activity android:name=".AddNewMember" />
+        <activity android:name=".PostDetailsActivity"></activity>
     </application>
 
 </manifest>

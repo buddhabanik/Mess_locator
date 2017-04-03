@@ -5,10 +5,16 @@ package com.example.buddha.mess_management;
  */
 
 public class Item {
-    private String address,rent,numberofseat,contractnumber,description;
+    private String id;
+    private String address;
+    private String rent;
+    private String numberofseat;
+    private String contractnumber;
+    private String description;
 
-    public Item(String address,String rent,String numberofseat,String contractnumber,String description)
+    public Item(String id,String address,String rent,String numberofseat,String contractnumber,String description)
     {
+        this.setId(id);
         this.setAddress(address);
         this.setRent(rent);
         this.setNumberoseat(numberofseat);
@@ -57,6 +63,14 @@ public class Item {
     public String getAddress() {
 
         return address;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
 

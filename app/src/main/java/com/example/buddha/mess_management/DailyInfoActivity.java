@@ -403,7 +403,7 @@ public class DailyInfoActivity extends AppCompatActivity {
                         //cost & meal update
                         if(dayFlag)
                         {
-                        total_cost  += shopCost;
+                            total_cost  += shopCost;
                         }
                         total_meal  += ( (float)( (Float.valueOf(selectBreakfastmeal))/2 ) + ( Float.valueOf(selectLunchmeal)) + Float.valueOf(selectDinnermeal) );
                         float total_meal_current = 0;
