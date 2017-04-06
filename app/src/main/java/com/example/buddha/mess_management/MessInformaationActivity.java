@@ -71,7 +71,7 @@ public class MessInformaationActivity extends AppCompatActivity {
                     Intent intent=new Intent(MessInformaationActivity.this, Mess_ContentAcitivity.class);
                     startActivity(intent);
                 }
-                else
+                else if(select == 1)
                 {
                     startActivity(new Intent(MessInformaationActivity.this, GuestLoginMealActivity.class));
                 }
