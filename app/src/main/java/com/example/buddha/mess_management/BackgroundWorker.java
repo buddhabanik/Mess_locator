@@ -35,7 +35,7 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
     Context context;
     TextView textView;
     AlertDialog alertDialog;
-    String server_url="http://192.168.0.103";
+    String server_url="http://192.168.0.102";
     BackgroundWorker(Context ct)
     {
         context=ct;
@@ -1162,10 +1162,10 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
         }
         else if(type.equals("shownewpost"))
         {
-            Intent intent=new Intent( context, DisplayDataActivity.class);
-            intent.putExtra("json_data",result);
-            intent.putExtra("previous","newpost");
-            context.startActivity(intent);
+//            Intent intent=new Intent( context, DisplayDataActivity.class);
+//            intent.putExtra("json_data",result);
+//            intent.putExtra("previous","newpost");
+//            context.startActivity(intent);
         }
         else if(type.equals("showMypost"))
         {
