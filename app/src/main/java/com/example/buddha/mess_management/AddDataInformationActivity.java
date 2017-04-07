@@ -1,6 +1,7 @@
 package com.example.buddha.mess_management;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class AddDataInformationActivity extends AppCompatActivity {
+
 
     public BackgroundWorker backgroundWorker = new BackgroundWorker(this);
     public static String Address,Rent,numberOfseat,contractNumber,description;
@@ -21,6 +23,7 @@ public class AddDataInformationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_data_information);
+
         editaddress=(EditText)findViewById(R.id.editText_address);
         editrent=(EditText)findViewById(R.id.editText_rent);
         editnumberofseat=(EditText)findViewById(R.id.editText_numberofseat);
@@ -55,6 +58,10 @@ public class AddDataInformationActivity extends AppCompatActivity {
                 {
                     backgroundWorker.execute("AddInfoData", userName, Address, Rent, numberOfseat, contractNumber, description);
                     Toast.makeText(AddDataInformationActivity.this, "Your Data is Posted", Toast.LENGTH_LONG).show();
+                    MessInformaationActivity.MIA.finish();
+                    Intent intent=new Intent( AddDataInformationActivity.this, MessInformaationActivity.class);
+                    intent.putExtra("username",userName);
+                    startActivity(intent);
                     finish();
                 }
                 else

@@ -1,5 +1,6 @@
 package com.example.buddha.mess_management;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +26,8 @@ public class MessInformaationActivity extends AppCompatActivity {
 
     Button addDatabutton,myPostbutton,newpostButton;
 
+    public static MessInformaationActivity MIA;
+
     public static String jsonData;
     JSONObject jsonObject;
     JSONArray jsonArray;
@@ -35,6 +38,7 @@ public class MessInformaationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        MIA = this;
         setContentView(R.layout.activity_mess_informaation);
         addDatabutton=(Button)findViewById(R.id.button_add);
         myPostbutton=(Button)findViewById(R.id.button_mypost);

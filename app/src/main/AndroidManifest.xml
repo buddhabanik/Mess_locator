@@ -27,7 +27,7 @@
         <activity android:name=".DailyInfoActivity" />
         <activity android:name=".MealRecordActivity" />
         <activity android:name=".Register" />
-        <activity android:name=".MessInformaationActivity" />
+        <activity android:name=".MessInformaationActivity" android:launchMode="singleInstance" />
         <activity android:name=".AddDataInformationActivity" />
         <activity android:name=".DisplayDataActivity" />
         <activity android:name=".MonthSelectionActivity" />
