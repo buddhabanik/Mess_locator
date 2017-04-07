@@ -37,6 +37,7 @@
             android:onClick="GoToMess"
             android:layout_below="@id/button_add"
             android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/shape_design_02" />
     </RelativeLayout>
 
