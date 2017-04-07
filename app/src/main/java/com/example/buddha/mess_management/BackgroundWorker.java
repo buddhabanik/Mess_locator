@@ -1061,56 +1061,6 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
             }
         }
 
-        else if( type.equals("updateMessInfo"))
-        {
-            server_url +="/Mess_locator/updateMessInfo.php";
-            try {
-                String id=params[1];
-                String Address= params[2];
-                String Rent= params[3];
-                String numberOfseat= params[4];
-                String contractNumber= params[5];
-                String description= params[6] ;
-
-                URL url=new URL(server_url);
-                HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                OutputStream outputStream= httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
-
-                String post_data=  URLEncoder.encode("id","UTF-8")+"="+URLEncoder.encode(id,"UTF-8")+"&"+
-                        URLEncoder.encode("Address","UTF-8")+"="+URLEncoder.encode(Address,"UTF-8")+"&"+
-                        URLEncoder.encode("Rent","UTF-8")+"="+URLEncoder.encode( Rent,"UTF-8")+"&"+
-                        URLEncoder.encode("numberOfseat","UTF-8")+"="+URLEncoder.encode(numberOfseat,"UTF-8")+"&"+
-                        URLEncoder.encode("contractNumber","UTF-8")+"="+URLEncoder.encode(contractNumber,"UTF-8")+"&"+
-                        URLEncoder.encode("description","UTF-8")+"="+URLEncoder.encode( description,"UTF-8");
-
-
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream=httpURLConnection.getInputStream();
-                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-                String result="",line;
-                while( (line=bufferedReader.readLine()) != null)
-                {
-                    result +=line;
-                }
-
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return result;
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
                 return null;
     }
@@ -1162,16 +1112,14 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
         }
         else if(type.equals("shownewpost"))
         {
-//            Intent intent=new Intent( context, DisplayDataActivity.class);
-//            intent.putExtra("json_data",result);
-//            intent.putExtra("previous","newpost");
-//            context.startActivity(intent);
+            Intent intent=new Intent( context, DisplayDataActivity.class);
+            intent.putExtra("json_data",result);
+            context.startActivity(intent);
         }
         else if(type.equals("showMypost"))
         {
             Intent intent=new Intent( context, DisplayDataActivity.class);
             intent.putExtra("json_data",result);
-            intent.putExtra("previous","mypost");
             context.startActivity(intent);
         }
         else if(type.equals("updateMonth"))
