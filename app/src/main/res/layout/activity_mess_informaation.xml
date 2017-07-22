@@ -4,6 +4,7 @@
     android:id="@+id/activity_mess_informaation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black01"
     tools:context="com.example.buddha.mess_management.MessInformaationActivity">
 
     <RelativeLayout
@@ -12,55 +13,86 @@
         android:id="@+id/relative2"
         android:layout_alignParentBottom="true">
 
-        <Button
-            android:text="ADD "
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
-            android:onClick="AddNewData"
-            android:layout_alignParentTop="true"
-            android:id="@+id/button_add" />
+            android:orientation="horizontal"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:id="@+id/buttons">
+            <Button
+                android:text="Post New"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="AddNewData"
+                android:id="@+id/button_add"
+                android:background="@drawable/shape_design_02"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/white"/>
 
-        <Button
-            android:text="MY POST"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="MyPost"
-            android:layout_toRightOf="@id/button_add"
-            android:id="@+id/button_mypost" />
+            <Button
+                android:text="MY POSTS"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="MyPost"
+                android:layout_weight="1"
+                android:layout_toRightOf="@id/button_add"
+                android:id="@+id/button_mypost"
+                android:background="@drawable/shape_design_02"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
 
         <Button
             android:text="Meal Record"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_mess"
             android:onClick="GoToMess"
-            android:layout_below="@id/button_add"
+            android:layout_below="@id/buttons"
             android:textColor="@android:color/white"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/shape_design_02" />
+            android:background="@drawable/shape_design_02"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"/>
     </RelativeLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/relative1"
         android:layout_above="@id/relative2"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:background="@color/colorPrimaryDark"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:background="@drawable/shape_design_06"
+        android:paddingRight="1dp"
+        android:paddingLeft="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Posts"
+            android:textSize="20sp"
+            android:textColor="@color/ash02"
+            android:id="@+id/textView_posts"
+            />
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/textView_posts"
             android:divider="@android:color/transparent"
-            android:dividerHeight="15dp"
+            android:dividerHeight="2dp"
             android:id="@+id/listview">
         </ListView>
     </RelativeLayout>
-
 
 </RelativeLayout>

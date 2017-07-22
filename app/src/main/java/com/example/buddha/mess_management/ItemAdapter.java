@@ -65,9 +65,9 @@ public class ItemAdapter extends ArrayAdapter {
         }
 
         Item item=(Item)this.getItem(position);
-        itemHolder.tx_address.setText("Address "+item.getAddress());
+        itemHolder.tx_address.setText("Address : "+item.getAddress());
         itemHolder.tx_rent.setText("Rent :"+item.getRent());
-        itemHolder.tx_numberofseat.setText("Number of available seat :"+item.getNumberofseat());
+        itemHolder.tx_numberofseat.setText("Number of available seat : "+item.getNumberofseat());
     //    itemHolder.tx_contractnumber.setText("Contract number :"+item.getContractnumber());
     //    itemHolder.tx_description.setText("Description :"+item.getDescription());
         return row;

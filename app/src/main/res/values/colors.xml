@@ -8,4 +8,18 @@
     <color name="myColor03">#22bfb4</color>
     <color name="myColor04">#2cd2c4</color>
     <color name="myColor05">#108e7c</color>
+    <color name="white">#ffffff</color>
+    <color name="ash">#585b5a</color>
+    <color name="ash01">#717f88</color>
+    <color name="ash02">#8e9ca5</color>
+    <color name="lightash">#b9baba</color>
+    <color name="black">#000000</color>
+    <color name="black01">#24323d</color>
+    <color name="green01">#1ab188</color>
+    <color name="teal">#009788</color>
+    <color name="lightblue">#03a9f3</color>
+    <color name="brown">#795549</color>
+    <color name="purple">#9c28af</color>
+    <color name="grey">#9e9e9e</color>
+    <color name="bluegrey">#607e89</color>
 </resources>

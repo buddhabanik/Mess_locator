@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_data_information"
     android:layout_width="match_parent"
@@ -8,84 +8,112 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/black01"
     tools:context="com.example.buddha.mess_management.AddDataInformationActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Enter Information"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:id="@+id/textView_title"/>
 
-    <RelativeLayout
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="address"
+        android:id="@+id/editText_address"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/textView_title"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_design_09"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="Enter Information"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="20dp"
-            android:id="@+id/textView_title"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Rent"
+        android:id="@+id/editText_rent"
+        android:layout_below="@id/editText_address"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_design_09"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="address"
-            android:ems="10"
-            android:id="@+id/editText_address"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/textView_title"
-            android:layout_centerHorizontal="true"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Number Of Available Seat"
+        android:layout_below="@+id/editText_rent"
+        android:layout_marginTop="10dp"
+        android:id="@+id/editText_numberofseat"
+        android:background="@drawable/shape_design_09"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="rent"
-            android:ems="10"
-            android:id="@+id/editText_rent"
-            android:layout_below="@id/editText_address"
-            android:layout_marginTop="10dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Contact Number"
+        android:layout_below="@+id/editText_numberofseat"
+        android:layout_marginTop="10dp"
+        android:id="@+id/editText_contractnumber"
+        android:background="@drawable/shape_design_09"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Number Of Available Seat"
-            android:ems="10"
-            android:layout_below="@+id/editText_rent"
-            android:layout_marginTop="10dp"
-            android:id="@+id/editText_numberofseat" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Contract Number"
-            android:ems="10"
-            android:layout_below="@+id/editText_numberofseat"
-            android:layout_marginTop="10dp"
-            android:id="@+id/editText_contractnumber" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:hint="description"
-            android:ems="10"
-            android:id="@+id/editText_description"
-            android:layout_below="@+id/editText_contractnumber"
-            android:layout_marginTop="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/buttons">
 
         <Button
-            android:text="Click to Save Data"
-            android:layout_width="wrap_content"
+            android:text="Post"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:ems="10"
             android:id="@+id/button_saveData"
-            android:layout_below="@+id/editText_description"
-            android:layout_centerHorizontal="true"
             android:textColor="@android:color/white"
-            android:background="@android:color/holo_blue_light"/>
+            android:background="@drawable/custom_button01"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+    </LinearLayout>
 
-    </RelativeLayout>
-</ScrollView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:hint="Description"
+        android:textAlignment="gravity"
+        android:gravity="start"
+        android:id="@+id/editText_description"
+        android:layout_below="@id/editText_contractnumber"
+        android:layout_above="@id/buttons"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_design_09"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        />
+
+
+</RelativeLayout>

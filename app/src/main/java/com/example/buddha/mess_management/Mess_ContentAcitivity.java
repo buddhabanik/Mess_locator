@@ -202,65 +202,32 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
     public void CurrentInfo(View v)
     {
 
-
-        float meal_rate= (float) 0.0;
-        try {
+        try{
             BackgroundWorker backgroundWorker = new BackgroundWorker(Mess_ContentAcitivity.this);
             System.out.println(">>>>>>>>    "+userName+"        >>>>>>>  "+selectedMonthNo+"           >>>>>>>>>>>>>>>  "+selectedYear);
             String res = backgroundWorker.execute("getResult",userName, Integer.toString(selectedMonthNo), selectedYear).get();
 
-            StringBuffer buffer = new StringBuffer();
-            System.out.println("  <<<<<<<<<<<"+res);
-            JSONObject jsonObject=new JSONObject(res);
-            JSONArray jsonArray=jsonObject.getJSONArray("result");
-            if(jsonArray.length() > 0) {
-                JSONObject individual = jsonArray.getJSONObject(0);
-                System.out.println("...............  " + individual.getString("total_money") + "            ........." + individual.getString("total_cost") + "                   .............." + individual.getString("total_meal"));
-
-
-                meal_rate = (float) (Integer.parseInt(individual.getString("total_cost")) / (Float.valueOf(individual.getString("total_meal"))));
-
-
-                buffer.append("Total money       :" + individual.getString("total_money") + "\n");
-                buffer.append("Total spent money :" + individual.getString("total_cost") + "\n");
-                buffer.append("Tolal meal        :" + individual.getString("total_meal") + "\n");
-                buffer.append("Per meal cost     :" + meal_rate + "\n\n");
-            }
-            else
-            {
-                buffer.append("No Data Found!");
-            }
-
-
-            //get all member info result
 
             BackgroundWorker backgroundWorker2 = new BackgroundWorker(Mess_ContentAcitivity.this);
             // System.out.println(">>>>>>>>    "+userName+"        >>>>>>>  "+selectedMonthNo+"           >>>>>>>>>>>>>>>  "+selectedYear);
             String res2 = backgroundWorker2.execute("getMessMemberData",userName, Integer.toString(selectedMonthNo), selectedYear).get();
 
-            JSONObject jsonObject2=new JSONObject(res2);
-            JSONArray jsonArray2=jsonObject2.getJSONArray("mess_member");
-            if(jsonArray2.length() > 0) {
-                buffer.append("Mess member Information"+"\n\n\n");
-                int countObject = 0;
 
-                while (countObject < jsonArray2.length()) {
-                    JSONObject individual2 = jsonArray2.getJSONObject(countObject);
-                    buffer.append("member name        :" + individual2.getString("member_name") + "\n");
-                    buffer.append("Tolal money        :" + individual2.getString("total_amount") + "\n");
-                    buffer.append("Tolal meal        :" + individual2.getString("total_meal") + "\n");
-                  //  buffer.append("Tolal cost        :" + individual2.getString("total_cost") + "\n\n");
-                    buffer.append("Tolal cost        :" +Float.valueOf(individual2.getString("total_meal"))*(meal_rate) + "\n\n");
+            JSONObject jsonObject=new JSONObject(res);
+            JSONArray jsonArray=jsonObject.getJSONArray("result");
 
-                    countObject++;
-                }
+            StringBuffer buffer = new StringBuffer();
 
+            if(jsonArray.length()<=0){
+                buffer.append("No Data Found!");
+                showMessage("MEAL INFORMATION",buffer.toString());
+
+            } else{
+                Intent intent=new Intent(Mess_ContentAcitivity.this, CurrentMealInfoActivity.class);
+                intent.putExtra("res",res);
+                intent.putExtra("res2",res2);
+                startActivity(intent);
             }
-            else
-            {
-                buffer.append("");
-            }
-            showMessage("MEAL INFORMATION",buffer.toString());
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -269,6 +236,74 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+//        float meal_rate= (float) 0.0;
+//        try {
+//            BackgroundWorker backgroundWorker = new BackgroundWorker(Mess_ContentAcitivity.this);
+//            System.out.println(">>>>>>>>    "+userName+"        >>>>>>>  "+selectedMonthNo+"           >>>>>>>>>>>>>>>  "+selectedYear);
+//            String res = backgroundWorker.execute("getResult",userName, Integer.toString(selectedMonthNo), selectedYear).get();
+//
+//            StringBuffer buffer = new StringBuffer();
+//            System.out.println("  <<<<<<<<<<<"+res);
+//            JSONObject jsonObject=new JSONObject(res);
+//            JSONArray jsonArray=jsonObject.getJSONArray("result");
+//            if(jsonArray.length() > 0) {
+//                JSONObject individual = jsonArray.getJSONObject(0);
+//                System.out.println("...............  " + individual.getString("total_money") + "            ........." + individual.getString("total_cost") + "                   .............." + individual.getString("total_meal"));
+//
+//
+//                meal_rate = (float) (Integer.parseInt(individual.getString("total_cost")) / (Float.valueOf(individual.getString("total_meal"))));
+//
+//
+//                buffer.append("Total money       :" + individual.getString("total_money") + "\n");
+//                buffer.append("Total spent money :" + individual.getString("total_cost") + "\n");
+//                buffer.append("Tolal meal        :" + individual.getString("total_meal") + "\n");
+//                buffer.append("Per meal cost     :" + meal_rate + "\n\n");
+//            }
+//            else
+//            {
+//                buffer.append("No Data Found!");
+//            }
+//
+//
+//            //get all member info result
+//
+//            BackgroundWorker backgroundWorker2 = new BackgroundWorker(Mess_ContentAcitivity.this);
+//            // System.out.println(">>>>>>>>    "+userName+"        >>>>>>>  "+selectedMonthNo+"           >>>>>>>>>>>>>>>  "+selectedYear);
+//            String res2 = backgroundWorker2.execute("getMessMemberData",userName, Integer.toString(selectedMonthNo), selectedYear).get();
+//
+//            JSONObject jsonObject2=new JSONObject(res2);
+//            JSONArray jsonArray2=jsonObject2.getJSONArray("mess_member");
+//            if(jsonArray2.length() > 0) {
+//                buffer.append("Mess member Information"+"\n\n\n");
+//                int countObject = 0;
+//
+//                while (countObject < jsonArray2.length()) {
+//                    JSONObject individual2 = jsonArray2.getJSONObject(countObject);
+//                    buffer.append("member name        :" + individual2.getString("member_name") + "\n");
+//                    buffer.append("Tolal money        :" + individual2.getString("total_amount") + "\n");
+//                    buffer.append("Tolal meal        :" + individual2.getString("total_meal") + "\n");
+//                  //  buffer.append("Tolal cost        :" + individual2.getString("total_cost") + "\n\n");
+//                    buffer.append("Tolal cost        :" +Float.valueOf(individual2.getString("total_meal"))*(meal_rate) + "\n\n");
+//
+//                    countObject++;
+//                }
+//
+//            }
+//            else
+//            {
+//                buffer.append("");
+//            }
+//            showMessage("MEAL INFORMATION",buffer.toString());
+//
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
 
     }
@@ -281,8 +316,8 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
     }
     public void MealRecords(View v)
     {
-        StringBuffer buffer = new StringBuffer();
-        try {
+
+        try{
             BackgroundWorker backgroundWorker = new BackgroundWorker(Mess_ContentAcitivity.this);
             System.out.println(">>>>>>>>    "+userName+"        >>>>>>>  "+selectedMonthNo+"           >>>>>>>>>>>>>>>  "+selectedYear);
             String res = backgroundWorker.execute("getMealRecord",userName, Integer.toString(selectedMonthNo), selectedYear).get();
@@ -291,31 +326,18 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
             System.out.println("  <<<<<<<<<<<"+res);
             JSONObject jsonObject=new JSONObject(res);
             JSONArray jsonArray=jsonObject.getJSONArray("meal_record");
-            if(jsonArray.length() > 0) {
-                int count = 0;
-                buffer.append("Current Month     : " + selectedMonth +", " +selectedYear + "\n");
-                int dayFlag = 0;
-                while (count < jsonArray.length()) {
-                    JSONObject individual = jsonArray.getJSONObject(count);
-                    int cday = Integer.parseInt(individual.getString("day"));
-                    if(dayFlag!= cday) {
-                        dayFlag = cday;
-                        buffer.append("Day           : " + individual.getString("day") + "\n");
-                        buffer.append("Shopping Cost : " + individual.getString("shopCost") + "\n\n");
-                    }
-                    buffer.append("Name          :" + individual.getString("member_name") + "\n");
-                    buffer.append("Breakfastmeal :" + individual.getString("breakfastMeal") +"\n");
-                    buffer.append("Lunchmeal     :" + individual.getString("lunchMeal") + "\n");
-                    buffer.append("Dinnermeal    :" + individual.getString("dinnerMeal") + "\n\n");
-                    count++;
-                }
-            }
-            else
-            {
-                buffer.append("No Data Found!");
-            }
 
-            showMessage("MEAL INFORMATION",buffer.toString());
+            StringBuffer buffer = new StringBuffer();
+
+            if(jsonArray.length()<=0){
+                buffer.append("No Data Found!");
+                showMessage("MEAL INFORMATION",buffer.toString());
+
+            } else{
+                Intent intent=new Intent(Mess_ContentAcitivity.this, MealInfoPerDayActivity.class);
+                intent.putExtra("res",res);
+                startActivity(intent);
+            }
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -324,6 +346,52 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+
+//        try {
+//            BackgroundWorker backgroundWorker = new BackgroundWorker(Mess_ContentAcitivity.this);
+//            System.out.println(">>>>>>>>    "+userName+"        >>>>>>>  "+selectedMonthNo+"           >>>>>>>>>>>>>>>  "+selectedYear);
+//            String res = backgroundWorker.execute("getMealRecord",userName, Integer.toString(selectedMonthNo), selectedYear).get();
+//
+//
+//            System.out.println("  <<<<<<<<<<<"+res);
+//            JSONObject jsonObject=new JSONObject(res);
+//            JSONArray jsonArray=jsonObject.getJSONArray("meal_record");
+//            if(jsonArray.length() > 0) {
+//                int count = 0;
+//                buffer.append("Current Month     : " + selectedMonth +", " +selectedYear + "\n");
+//                int dayFlag = 0;
+//                while (count < jsonArray.length()) {
+//                    JSONObject individual = jsonArray.getJSONObject(count);
+//                    int cday = Integer.parseInt(individual.getString("day"));
+//                    if(dayFlag!= cday) {
+//                        dayFlag = cday;
+//                        buffer.append("Day           : " + individual.getString("day") + "\n");
+//                        buffer.append("Shopping Cost : " + individual.getString("shopCost") + "\n\n");
+//                    }
+//                    buffer.append("Name          :" + individual.getString("member_name") + "\n");
+//                    buffer.append("Breakfastmeal :" + individual.getString("breakfastMeal") +"\n");
+//                    buffer.append("Lunchmeal     :" + individual.getString("lunchMeal") + "\n");
+//                    buffer.append("Dinnermeal    :" + individual.getString("dinnerMeal") + "\n\n");
+//                    count++;
+//                }
+//            }
+//            else
+//            {
+//                buffer.append("No Data Found!");
+//            }
+//
+//            showMessage("MEAL INFORMATION",buffer.toString());
+//
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
     public void mealInfo(View v){

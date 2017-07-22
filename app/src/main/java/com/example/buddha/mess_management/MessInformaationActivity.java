@@ -132,6 +132,7 @@ public class MessInformaationActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
+        select=-1;
 
 
         final String selection ;
@@ -162,6 +163,8 @@ public class MessInformaationActivity extends AppCompatActivity {
                 {
                     startActivity(new Intent(MessInformaationActivity.this, GuestLoginMealActivity.class));
                 }
+
+                System.out.println(">>"+select+"<<");
 
             }
         });

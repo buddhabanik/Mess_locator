@@ -35,7 +35,7 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
     Context context;
     TextView textView;
     AlertDialog alertDialog;
-    String server_url="http://192.168.0.100";
+    String server_url="http://192.168.0.102";
     BackgroundWorker(Context ct)
     {
         context=ct;
@@ -1139,6 +1139,7 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
             alertDialog.setTitle("Login status!");
             alertDialog.show();
             // Toast.makeText(BackgroundWorker.this, result ,Toast.LENGTH_SHORT).show();
+            System.out.println(">>"+result+"<<");
             if( result.equals("login successfully"))
             {
                 Intent intent=new Intent( context, MessInformaationActivity.class);

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
-    android:background="@color/myColor01"
+    android:background="@drawable/shape_design_03"
     >
 
     <TextView
@@ -13,26 +13,29 @@
         android:id="@+id/text_address"
         android:text="akalika"
         android:gravity="center"
+        android:textColor="@color/white"
         android:layout_alignParentLeft="true"
-        android:textAppearance="?android:textAppearanceLarge"
+        android:textAppearance="?android:textAppearanceMedium"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/text_rent"
         android:text="rent"
+        android:textColor="@color/white"
         android:gravity="center"
         android:layout_below="@+id/text_address"
-        android:textAppearance="?android:textAppearanceLarge"
+        android:textAppearance="?android:textAppearanceMedium"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/text_numberofseat"
         android:text="numberofseat"
+        android:textColor="@color/white"
         android:gravity="center"
         android:layout_below="@id/text_rent"
-        android:textAppearance="?android:textAppearanceLarge"
+        android:textAppearance="?android:textAppearanceMedium"
         />
 
 

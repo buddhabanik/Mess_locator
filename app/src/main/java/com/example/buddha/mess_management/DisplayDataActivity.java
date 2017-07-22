@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class DisplayDataActivity extends AppCompatActivity {
 
+    public static DisplayDataActivity DDA;
     public static String jsonData;
     JSONObject jsonObject;
     JSONArray jsonArray;
@@ -27,6 +28,7 @@ public class DisplayDataActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_data);
+        DDA = this;
 
         final ArrayList<Item> list = new ArrayList<>();
 
@@ -47,6 +49,7 @@ public class DisplayDataActivity extends AppCompatActivity {
                 buffer.append("contact number = " + selectedItem.getContractnumber() + "\n");
                 buffer.append("description = " + selectedItem.getDescription() + "\n\n");
                 Intent intent=new Intent( DisplayDataActivity.this, PostDetailsActivity.class);
+                intent.putExtra("json_data",jsonData);
                 intent.putExtra("id",selectedItem.getId());
                 intent.putExtra("address",selectedItem.getAddress());
                 intent.putExtra("rent",selectedItem.getRent());
