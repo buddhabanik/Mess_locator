@@ -48,7 +48,9 @@ public class GuestLoginMealActivity extends AppCompatActivity {
                     editor.putString("username",managerName.getText().toString());
                     System.out.println(">>>>>     inside button 3 "+managerName.getText().toString());
                     editor.commit();
-                    startActivity(new Intent(GuestLoginMealActivity.this,Mess_ContentAcitivity.class));
+                    Intent intent = new Intent(GuestLoginMealActivity.this,Mess_ContentAcitivity.class);
+                    intent.putExtra("type","guest");
+                    startActivity(intent);
                 }
                 else
                 {

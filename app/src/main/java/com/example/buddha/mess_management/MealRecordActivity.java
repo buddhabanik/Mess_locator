@@ -2,7 +2,9 @@ package com.example.buddha.mess_management;
 
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,13 +32,14 @@ public class MealRecordActivity extends AppCompatActivity {
     public static String selectedYear;
     public static int selectedMonthNo,currentDay;
     public String selectedMonth,selectedDay,selectedMember,mealRecord;
-    public int memberNo;
+    public int memberNo,shopCosts;
     List<String> shopCost,labels;
 
     TextView currentMonthYear,memberText;
     Spinner spinnerDay,spinnerMember;
     EditText breakMeal,lunchMeal,dinnerMeal,shopCostEdit;
     Button edit,save;
+    float breakFastMeals,lunchMeals,dinnerMeals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,9 @@ public class MealRecordActivity extends AppCompatActivity {
         edit = (Button) findViewById(R.id.button_edit);
         save = (Button) findViewById(R.id.button_save);
         shopCostEdit = (EditText) findViewById(R.id.editText_shopCost);
+
+        spinnerDay.getBackground().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        spinnerMember.getBackground().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
         spinnerMember.setEnabled(false);
         breakMeal.setEnabled(false);
@@ -159,7 +165,7 @@ public class MealRecordActivity extends AppCompatActivity {
             mealNumber_day[i] = Integer.toString(i);
         }
 
-        ArrayAdapter<String> adapter_day=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mealNumber_day);
+        ArrayAdapter<String> adapter_day=new ArrayAdapter<String>(this, R.layout.spinner_item, mealNumber_day);
         adapter_day.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDay.setAdapter(adapter_day);
 
@@ -171,6 +177,7 @@ public class MealRecordActivity extends AppCompatActivity {
                 selectedDay =adapterView.getItemAtPosition(i).toString();
                 if(selectedDay!="Select a Day"){
                     shopCostEdit.setText(shopCost.get(i-1));
+                    shopCosts = Integer.parseInt(shopCost.get(i-1));
                     breakMeal.setText("");
                     lunchMeal.setText("");
                     dinnerMeal.setText("");
@@ -185,7 +192,7 @@ public class MealRecordActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<String> adapter_member=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, labels);
+        ArrayAdapter<String> adapter_member=new ArrayAdapter<String>(this, R.layout.spinner_item, labels);
         adapter_member.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMember.setAdapter(adapter_member);
 
@@ -211,6 +218,9 @@ public class MealRecordActivity extends AppCompatActivity {
                                     breakMeal.setText(individual.getString("breakfastMeal"));
                                     lunchMeal.setText(individual.getString("lunchMeal"));
                                     dinnerMeal.setText(individual.getString("dinnerMeal"));
+                                    breakFastMeals = Float.parseFloat(individual.getString("breakfastMeal"));
+                                    lunchMeals = Float.parseFloat(individual.getString("lunchMeal"));
+                                    dinnerMeals = Float.parseFloat(individual.getString("dinnerMeal"));
                                     edit.setEnabled(true);
                                 }
                                 count++;
@@ -265,6 +275,88 @@ public class MealRecordActivity extends AppCompatActivity {
                 try {
                     BackgroundWorker backgroundWorker = new BackgroundWorker(MealRecordActivity.this);
                     res = backgroundWorker.execute("updateMealRecord",USERNAME,Integer.toString(selectedMonthNo),selectedYear,selectedMember,breakMealText,lunchMealText,dinnerMealText,shopCostText,selectedDay).get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
+                float total_meal_current = 0;
+                try {
+                    BackgroundWorker backgroundWorker1 = new BackgroundWorker(MealRecordActivity.this);
+                    String res1 = backgroundWorker1.execute("getMessMemberData",USERNAME,Integer.toString(selectedMonthNo),selectedYear).get();
+
+                    JSONObject jsonObject=new JSONObject(res1);
+                    JSONArray jsonArray=jsonObject.getJSONArray("mess_member");
+                    int count=0;
+                    String member_name,total_meal;
+                    while(count<jsonArray.length() )
+                    {
+                        JSONObject individual=jsonArray.getJSONObject(count);
+                        member_name = individual.getString("member_name");
+                        total_meal = individual.getString("total_meal");
+                        if(member_name.equals(selectedMember))
+                            total_meal_current = Float.valueOf(total_meal);
+                        count++;
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                breakFastMeals = Float.parseFloat(breakMealText) - breakFastMeals;
+                lunchMeals =  Float.parseFloat(lunchMealText) - lunchMeals ;
+                dinnerMeals = Float.parseFloat(dinnerMealText) - dinnerMeals;
+                total_meal_current += ( breakFastMeals/2 ) + lunchMeals + dinnerMeals ;
+
+                try {
+                    BackgroundWorker backgroundWorker2 = new BackgroundWorker(MealRecordActivity.this);
+                    String res2 = backgroundWorker2.execute("updateTotalMealMessMember",USERNAME,Integer.toString(selectedMonthNo),selectedYear,Float.toString(total_meal_current),selectedMember).get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
+                float total_meal=0;
+                int total_cost=0;
+
+                try {
+                    BackgroundWorker backgroundWorker = new BackgroundWorker(MealRecordActivity.this);
+                    String res3 = backgroundWorker.execute("getResult",USERNAME,Integer.toString(selectedMonthNo),selectedYear).get();
+
+                    JSONObject jsonObject=new JSONObject(res3);
+                    JSONArray jsonArray=jsonObject.getJSONArray("result");
+                    if(jsonArray.length()>0) {
+                        int count = 0;
+                        while (count < jsonArray.length()) {
+                            JSONObject individual = jsonArray.getJSONObject(count);
+                            total_meal = Float.valueOf(individual.getString("total_meal"));
+                            total_cost = Integer.parseInt(individual.getString("total_cost"));
+                            count++;
+                        }
+
+                    }else{
+                        total_cost = 0;
+                        total_meal = 0;
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                total_meal += ( breakFastMeals/2 ) + lunchMeals + dinnerMeals ;
+                total_cost += Integer.parseInt(shopCostText) - shopCosts;
+
+                try {
+                    BackgroundWorker backgroundWorker3 = new BackgroundWorker(MealRecordActivity.this);
+                    res = backgroundWorker3.execute("updateResult",USERNAME,Integer.toString(selectedMonthNo),selectedYear,Integer.toString(total_cost),Float.toString(total_meal)).get();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

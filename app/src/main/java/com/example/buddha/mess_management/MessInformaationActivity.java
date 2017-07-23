@@ -157,6 +157,7 @@ public class MessInformaationActivity extends AppCompatActivity {
                     System.out.println("username in mess information    >>>>>>.."+username);
                     editor.commit();
                     Intent intent=new Intent(MessInformaationActivity.this, Mess_ContentAcitivity.class);
+                    intent.putExtra("type","manager");
                     startActivity(intent);
                 }
                 else if(select == 1)

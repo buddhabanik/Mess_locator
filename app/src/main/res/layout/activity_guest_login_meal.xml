@@ -8,40 +8,48 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/black01"
     tools:context="com.example.buddha.mess_management.GuestLoginMealActivity">
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Manager Name"
+        android:hint="Manager Id"
+        android:textColorHint="@color/ash02"
+        android:textColor="@color/white"
         android:ems="10"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="81dp"
-        android:id="@+id/editText_managerName" />
+        android:id="@+id/editText_managerName"
+        android:background="@drawable/shape_design_07"
+        android:paddingLeft="10dp"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:hint="Password"
+        android:textColorHint="@color/ash02"
+        android:textColor="@color/white"
         android:ems="10"
         android:layout_below="@+id/editText_managerName"
         android:layout_alignRight="@+id/editText_managerName"
         android:layout_alignEnd="@+id/editText_managerName"
         android:layout_marginTop="56dp"
-        android:id="@+id/editText_password" />
+        android:id="@+id/editText_password"
+        android:background="@drawable/shape_design_07"
+        android:paddingLeft="10dp"/>
 
     <Button
         android:text="submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText_password"
-        android:layout_alignLeft="@+id/editText_password"
-        android:layout_alignStart="@+id/editText_password"
-        android:layout_marginLeft="51dp"
-        android:layout_marginStart="51dp"
+        android:layout_alignLeft="@id/editText_password"
+        android:layout_alignRight="@id/editText_password"
         android:layout_marginTop="41dp"
-        android:id="@+id/button" />
+        android:id="@+id/button"
+        android:background="@drawable/custom_button02"/>
 </RelativeLayout>

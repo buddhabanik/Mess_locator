@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -30,7 +31,7 @@ public class DailyInfoActivity extends AppCompatActivity {
     public static String USERNAME;
 
     //current month and year
-    public static String selectedYear;
+    public static String selectedYear,selectedMonth;
     public static int selectedMonthNo;
 
     Spinner spinnerMemberName,spinnerbreakfastMeal,spinnerlaunchMeal, spinnerdinnerMeal;
@@ -46,6 +47,8 @@ public class DailyInfoActivity extends AppCompatActivity {
     public boolean dayFlag;
     public List<String> enteredMembers;
 
+    TextView tv_currentMonth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class DailyInfoActivity extends AppCompatActivity {
         saveDatabtn=(Button)findViewById(R.id.button_saveinfo);
         edittextDay=(EditText)findViewById(R.id.editText_day);
         editText_CostOfShopping=(EditText)findViewById(R.id.editText_CostOfShopping);
+        tv_currentMonth = (TextView) findViewById(R.id.textView_currentMonth);
 
         //    res = myDatabase.GetData();
         //    res2 = myDatabase.GetData();
@@ -90,8 +94,21 @@ public class DailyInfoActivity extends AppCompatActivity {
         else if (selectedMonthNo == 11)  lengthOfMonth = 30;
         else if (selectedMonthNo == 12)  lengthOfMonth = 31;
 
+        if(selectedMonthNo==1)  selectedMonth="January";
+        else if(selectedMonthNo==2) selectedMonth="February";
+        else if(selectedMonthNo==3) selectedMonth="March";
+        else if(selectedMonthNo==4) selectedMonth="April";
+        else if(selectedMonthNo==5) selectedMonth="May";
+        else if(selectedMonthNo==6) selectedMonth="June";
+        else if(selectedMonthNo==7) selectedMonth="July";
+        else if(selectedMonthNo==8) selectedMonth="August";
+        else if(selectedMonthNo==9) selectedMonth="September";
+        else if(selectedMonthNo==10) selectedMonth="October";
+        else if(selectedMonthNo==11) selectedMonth="November";
+        else if(selectedMonthNo==12) selectedMonth="December";
 
 
+        tv_currentMonth.setText("Current Month : " + selectedMonth +", " +selectedYear);
 
         List<String> labels=new ArrayList<String>();
         labels.add("Select Member Name");
@@ -211,17 +228,17 @@ public class DailyInfoActivity extends AppCompatActivity {
 
         if( currentDay <= lengthOfMonth) {
             edittextDay.setText("" + currentDay);
-            edittextDay.setEnabled(false);
+            edittextDay.setKeyListener(null);
             if (!dayFlag) {
                 editText_CostOfShopping.setText("" + shopCost);
-                editText_CostOfShopping.setEnabled(false);
+                editText_CostOfShopping.setKeyListener(null);
             }
         }
         else
         {
             saveDatabtn.setEnabled(false);
             edittextDay.setText("Current Month has Ended.");
-            edittextDay.setEnabled(false);
+            edittextDay.setKeyListener(null);
         }
 
         ArrayAdapter<String> adapter =new ArrayAdapter<String>(this,

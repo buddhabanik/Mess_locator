@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
-    android:background="@drawable/shape_design_03"
+    android:background="@drawable/custom_list_item01"
     >
 
     <TextView
@@ -13,7 +13,7 @@
         android:id="@+id/text_address"
         android:text="akalika"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black01"
         android:layout_alignParentLeft="true"
         android:textAppearance="?android:textAppearanceMedium"
         />
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/text_rent"
         android:text="rent"
-        android:textColor="@color/white"
+        android:textColor="@color/black01"
         android:gravity="center"
         android:layout_below="@+id/text_address"
         android:textAppearance="?android:textAppearanceMedium"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/text_numberofseat"
         android:text="numberofseat"
-        android:textColor="@color/white"
+        android:textColor="@color/black01"
         android:gravity="center"
         android:layout_below="@id/text_rent"
         android:textAppearance="?android:textAppearanceMedium"

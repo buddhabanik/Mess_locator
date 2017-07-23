@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -27,7 +28,7 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
     public static int  selectedMonthNo;
     public  static  String selectedYear="",selectedMonth;
 
-    Button initializationbtn,updatebtn, currentinfobtn,dailyInforeservation,mealRecord,addNewMember;
+    Button initializationbtn,updatebtn, currentinfobtn,dailyInforeservation,mealRecord,addNewMember,setGuestPassBtn,mealInfoBtn;
     public final Database myDatabase =  new Database(this);
 
 
@@ -42,6 +43,8 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
         dailyInforeservation=(Button)findViewById(R.id.button_dailyinfo);
         mealRecord=(Button)findViewById(R.id.button_mealrecords);
         addNewMember=(Button)findViewById(R.id.button_addNewMember);
+        setGuestPassBtn = (Button) findViewById(R.id.button_setguestpassword);
+        mealInfoBtn = (Button) findViewById(R.id.button_mealInfo);
 
         SharedPreferences prefs=getSharedPreferences("MYPREFS",0);
         userName=prefs.getString("username","");
@@ -60,6 +63,29 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
         else if(selectedMonthNo==11) selectedMonth="November";
         else if(selectedMonthNo==12) selectedMonth="December";
         System.out.println("username sfdsfffdsfdsfs    >>>>>>>>>>>> ..."+userName);
+
+        if(getIntent().getExtras().getString("type").equals("guest")){
+            initializationbtn.setEnabled(false);
+            updatebtn.setEnabled(false);
+            dailyInforeservation.setEnabled(false);
+            addNewMember.setEnabled(false);
+            setGuestPassBtn.setEnabled(false);
+            mealInfoBtn.setEnabled(false);
+
+            initializationbtn.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.drawable.ic_content_paste_grey_24dp),null,null);
+            updatebtn.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.drawable.ic_attach_money_grey_24dp),null,null);
+            dailyInforeservation.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.drawable.ic_assignment_turned_in_grey_24dp),null,null);
+            addNewMember.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.drawable.ic_person_add_grey_24dp),null,null);
+            setGuestPassBtn.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.drawable.ic_vpn_key_grey_24dp),null,null);
+            mealInfoBtn.setCompoundDrawablesWithIntrinsicBounds(null,getResources().getDrawable(R.drawable.ic_edit_grey_24dp),null,null);
+
+            initializationbtn.setTextColor(getResources().getColor(R.color.grey));
+            updatebtn.setTextColor(getResources().getColor(R.color.grey));
+            dailyInforeservation.setTextColor(getResources().getColor(R.color.grey));
+            addNewMember.setTextColor(getResources().getColor(R.color.grey));
+            setGuestPassBtn.setTextColor(getResources().getColor(R.color.grey));
+            mealInfoBtn.setTextColor(getResources().getColor(R.color.grey));
+        }
 
         getCurrentMonthYear();
     }

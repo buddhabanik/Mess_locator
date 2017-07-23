@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_meal_record"
     android:layout_width="match_parent"
@@ -8,167 +8,227 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/black01"
     tools:context="com.example.buddha.mess_management.MealRecordActivity">
 
-    <RelativeLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Meal Information"
+        android:textColor="@color/lightblue"
+        android:textSize="20sp"
+        android:id="@+id/textView_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_title"
+        android:text="Current Month and Year : "
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView_month"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:id="@+id/linear1"
+        android:layout_below="@id/textView_month"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="Meal Information"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="20dp"
-            android:id="@+id/textView_title"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_title"
-            android:text="Current Month and Year : "
-            android:layout_marginTop="10dp"
-            android:id="@+id/textView_month"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_month"
+            android:layout_height="match_parent"
             android:text="Select a day : "
-            android:layout_marginTop="25dp"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:textColor="@color/white"
             android:id="@+id/textView_day"/>
 
-        <Spinner
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner_day"
-            android:layout_below="@id/textView_month"
-            android:layout_toRightOf="@id/textView_day"
-            android:layout_marginTop="23dp"
-            android:layout_marginLeft="20dp"/>
+            android:background="@color/white">
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_day" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear1"
+        android:text="Shopping cost : "
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView_shopCost"
+        android:textColor="@color/white"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint=""
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:ems="4"
+        android:id="@+id/editText_shopCost"
+        android:layout_below="@id/linear1"
+        android:layout_toRightOf="@id/textView_shopCost"
+        android:layout_alignBaseline="@id/textView_shopCost"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_design_09"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear2"
+        android:layout_below="@id/textView_shopCost"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_day"
-            android:text="Shopping cost : "
-            android:layout_marginTop="25dp"
-            android:id="@+id/textView_shopCost"/>
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint=""
-            android:inputType="number"
-            android:ems="3"
-            android:id="@+id/editText_shopCost"
-            android:layout_below="@id/textView_day"
-            android:layout_toRightOf="@id/textView_shopCost"
-            android:layout_margin="10dp"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_shopCost"
+            android:layout_height="match_parent"
             android:text="Select a member : "
-            android:layout_marginTop="25dp"
-
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:textColor="@color/white"
             android:id="@+id/textView_member"/>
 
-        <Spinner
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner_member"
-            android:layout_below="@id/textView_shopCost"
-            android:layout_toRightOf="@id/textView_member"
-            android:layout_marginTop="23dp"
-            android:layout_marginLeft="20dp"/>
+            android:background="@color/white">
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_member" />
+        </LinearLayout>
+    </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_member"
-            android:text="Meals taken by member on day 0 : "
-            android:layout_marginTop="25dp"
-            android:id="@+id/textView_mealInfo"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear2"
+        android:text="Meals taken by member on day 0 : "
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView_mealInfo"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_mealInfo"
-            android:text="Breakfast meal : "
-            android:layout_marginTop="23dp"
-            android:id="@+id/textView_title1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_mealInfo"
+        android:text="Breakfast meal : "
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView_title1"/>
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint=""
-            android:inputType="number"
-            android:ems="3"
-            android:id="@+id/editText_breakMeal"
-            android:layout_below="@id/textView_mealInfo"
-            android:layout_toRightOf="@id/textView_title1"
-            android:layout_margin="10dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint=""
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:ems="3"
+        android:id="@+id/editText_breakMeal"
+        android:layout_below="@id/textView_mealInfo"
+        android:layout_toRightOf="@id/textView_title1"
+        android:layout_alignBaseline="@id/textView_title1"
+        android:background="@drawable/shape_design_09"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_title1"
-            android:text="Lunch meal : "
-            android:layout_marginTop="23dp"
-            android:id="@+id/textView_title2"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_title1"
+        android:text="Lunch meal : "
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView_title2"/>
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint=""
-            android:inputType="number"
-            android:ems="3"
-            android:id="@+id/editText_lunchMeal"
-            android:layout_below="@id/textView_title1"
-            android:layout_toRightOf="@id/textView_title2"
-            android:layout_margin="10dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint=""
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:ems="3"
+        android:id="@+id/editText_lunchMeal"
+        android:layout_below="@id/textView_title1"
+        android:layout_toRightOf="@id/textView_title2"
+        android:layout_alignBaseline="@id/textView_title2"
+        android:layout_alignLeft="@id/editText_breakMeal"
+        android:background="@drawable/shape_design_09"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView_title2"
-            android:text="Dinner meal : "
-            android:layout_marginTop="23dp"
-            android:id="@+id/textView_title3"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_title2"
+        android:text="Dinner meal : "
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView_title3"/>
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint=""
-            android:inputType="number"
-            android:ems="3"
-            android:id="@+id/editText_dinnerMeal"
-            android:layout_below="@id/textView_title2"
-            android:layout_toRightOf="@id/textView_title3"
-            android:layout_margin="10dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint=""
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:ems="3"
+        android:id="@+id/editText_dinnerMeal"
+        android:layout_below="@id/textView_title2"
+        android:layout_toRightOf="@id/textView_title3"
+        android:layout_alignBaseline="@id/textView_title3"
+        android:layout_alignLeft="@id/editText_breakMeal"
+        android:background="@drawable/shape_design_09"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/buttons"
+        android:layout_alignParentBottom="true"
+        >
 
         <Button
             android:text="Edit"
-            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_title3"
-            android:layout_marginTop="10dp"
-            android:id="@+id/button_edit" />
+            android:id="@+id/button_edit"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button01"
+            android:layout_marginRight="5dp"/>
 
         <Button
             android:text="Save"
-            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_title3"
-            android:layout_toRightOf="@id/button_edit"
-            android:layout_marginTop="10dp"
-            android:id="@+id/button_save" />
+            android:layout_weight="1"
+            android:id="@+id/button_save"
+            android:background="@drawable/custom_button01"
+            android:layout_marginLeft="5dp"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
-</ScrollView>
+</RelativeLayout>

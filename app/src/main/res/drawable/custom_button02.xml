@@ -8,11 +8,6 @@
                 android:color="@color/green01"
                 />
 
-            <stroke
-                android:color="@color/ash02"
-                android:width="1dp"
-                />
-
             <corners
                 android:radius="2dp"
                 />
@@ -26,11 +21,6 @@
                 android:color="@color/lightblue"
                 />
 
-            <stroke
-                android:color="@color/ash02"
-                android:width="1dp"
-                />
-
             <corners
                 android:radius="2dp"
                 />
@@ -42,11 +32,6 @@
 
             <solid
                 android:color="@color/grey"
-                />
-
-            <stroke
-                android:color="@color/ash02"
-                android:width="1dp"
                 />
 
             <corners

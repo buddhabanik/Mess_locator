@@ -18,11 +18,11 @@ public class CurrentMealInfoActivity extends AppCompatActivity {
 
     public static String userName="";
     public static int  selectedMonthNo;
-    public  static  String selectedYear="";
+    public  static  String selectedYear="",selectedMonth;
     public String res,res2;
 
     TableLayout t2;
-
+    TextView tv_currentMonth;
     TextView tv_totalMoney,tv_totalSpentMoney,tv_totalMeal,tv_perMealCost;
 
     @Override
@@ -35,12 +35,28 @@ public class CurrentMealInfoActivity extends AppCompatActivity {
         selectedMonthNo=Integer.parseInt(prefs.getString("selectedMonthNo","0"));
         selectedYear=prefs.getString("selectedYear","");
 
+        if(selectedMonthNo==1)  selectedMonth="January";
+        else if(selectedMonthNo==2) selectedMonth="February";
+        else if(selectedMonthNo==3) selectedMonth="March";
+        else if(selectedMonthNo==4) selectedMonth="April";
+        else if(selectedMonthNo==5) selectedMonth="May";
+        else if(selectedMonthNo==6) selectedMonth="June";
+        else if(selectedMonthNo==7) selectedMonth="July";
+        else if(selectedMonthNo==8) selectedMonth="August";
+        else if(selectedMonthNo==9) selectedMonth="September";
+        else if(selectedMonthNo==10) selectedMonth="October";
+        else if(selectedMonthNo==11) selectedMonth="November";
+        else if(selectedMonthNo==12) selectedMonth="December";
+
         t2 = (TableLayout) findViewById(R.id.t2);
 
         tv_totalMeal = (TextView) findViewById(R.id.textView_totalMeal);
         tv_totalMoney = (TextView) findViewById(R.id.textView_totalMoney);
         tv_totalSpentMoney = (TextView) findViewById(R.id.textView_totalSpentMoney);
         tv_perMealCost = (TextView) findViewById(R.id.textView_PerMealCost);
+        tv_currentMonth = (TextView) findViewById(R.id.textView_currentMonth);
+
+        tv_currentMonth.setText("Current Month : " + selectedMonth +", " +selectedYear);
 
 
         res = getIntent().getExtras().getString("res");

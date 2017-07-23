@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -35,7 +36,7 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
     Context context;
     TextView textView;
     AlertDialog alertDialog;
-    String server_url="http://192.168.0.102";
+    String server_url="http://192.168.0.101";
     BackgroundWorker(Context ct)
     {
         context=ct;
@@ -1136,24 +1137,28 @@ public class BackgroundWorker extends AsyncTask<String ,String, String> {
 
         if(type.equals("login"))
         {
-            alertDialog.setTitle("Login status!");
-            alertDialog.show();
-            // Toast.makeText(BackgroundWorker.this, result ,Toast.LENGTH_SHORT).show();
+//            alertDialog.setTitle("Login status!");
+//            alertDialog.show();
+//            Toast.makeText(context, result ,Toast.LENGTH_SHORT).show();
             System.out.println(">>"+result+"<<");
             if( result.equals("login successfully"))
             {
+                Toast.makeText(context, "Welcome "+USERNAME ,Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent( context, MessInformaationActivity.class);
                 intent.putExtra("username",USERNAME);
                 context.startActivity(intent);
                 //MainActivity.dialog.dismiss();
             }
+            else{
+                Toast.makeText(context, result ,Toast.LENGTH_SHORT).show();
+            }
         }
 
         else if(type.equals("registation"))
         {
-            alertDialog.setTitle("Registration status!");
-            alertDialog.show();
-            // Toast.makeText(BackgroundWorker.this, result ,Toast.LENGTH_SHORT).show();
+//            alertDialog.setTitle("Registration status!");
+//            alertDialog.show();
+            Toast.makeText(context, result ,Toast.LENGTH_SHORT).show();
             if( result.equals("Successfully registered"))
             {
                 Intent intent=new Intent( context, MainActivity.class);
