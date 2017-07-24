@@ -345,7 +345,6 @@ public class DailyInfoActivity extends AppCompatActivity {
                 boolean flag=false;
                 res = myDatabase.GetData();
                 String costOfShopping=editText_CostOfShopping.getText().toString();
-                shopCost = Integer.parseInt(costOfShopping);
 
                 if( dayFlag) {
 
@@ -354,6 +353,7 @@ public class DailyInfoActivity extends AppCompatActivity {
                         return;
                     }
                 }
+                shopCost = Integer.parseInt(costOfShopping);
 
 
                 if(selectMember.equals("Select Member Name"))
@@ -494,9 +494,6 @@ public class DailyInfoActivity extends AppCompatActivity {
                                 }
 
                             }
-
-                            Intent intent=new Intent( DailyInfoActivity.this, Mess_ContentAcitivity.class);
-                            startActivity(intent);
                             finish();
                         }
 

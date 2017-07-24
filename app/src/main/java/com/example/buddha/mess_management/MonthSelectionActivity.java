@@ -20,8 +20,8 @@ public class MonthSelectionActivity extends AppCompatActivity {
     Spinner spinner1,spinner2;
     Button next;
     public static String selectedMonth="";
-    public static String selectedYear;
-    public static int selectedMonthNo;
+    public static String selectedYear,selectedYearpre;
+    public static int selectedMonthNo,selectedMonthNopre;
 
 //    public BackgroundWorker backgroundWorker = new BackgroundWorker(this);
 
@@ -35,6 +35,8 @@ public class MonthSelectionActivity extends AppCompatActivity {
 
         final SharedPreferences prefs = getSharedPreferences("MYPREFS",0);
         USERNAME = prefs.getString("username","");
+        selectedMonthNopre = Integer.parseInt(prefs.getString("selectedMonthNo",""));
+        selectedYearpre = prefs.getString("selectedYear","");
 
         selectedMonth="";
         selectedYear="";
@@ -95,6 +97,15 @@ public class MonthSelectionActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    try {
+                        BackgroundWorker backgroundWorker2 = new BackgroundWorker(MonthSelectionActivity.this);
+                        String res = backgroundWorker2.execute("updateMonth",USERNAME,Integer.toString(selectedMonthNopre),selectedYearpre,"1").get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("selectedMonthNo", Integer.toString(selectedMonthNo));
                     editor.putString("selectedMonth", selectedMonth);

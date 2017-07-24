@@ -195,9 +195,6 @@ public class Mess_activity extends AppCompatActivity {
                             } catch (ExecutionException e) {
                                 e.printStackTrace();
                             }
-
-                            Intent intent=new Intent( Mess_activity.this, Mess_ContentAcitivity.class);
-                            startActivity(intent);
                             finish();
                         }
 

@@ -227,6 +227,7 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
 
     public void CurrentInfo(View v)
     {
+        getCurrentMonthYear();
 
         try{
             BackgroundWorker backgroundWorker = new BackgroundWorker(Mess_ContentAcitivity.this);
@@ -245,8 +246,7 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
             StringBuffer buffer = new StringBuffer();
 
             if(jsonArray.length()<=0){
-                buffer.append("No Data Found!");
-                showMessage("MEAL INFORMATION",buffer.toString());
+                Toast.makeText(Mess_ContentAcitivity.this,"No Data Found!",Toast.LENGTH_LONG).show();
 
             } else{
                 Intent intent=new Intent(Mess_ContentAcitivity.this, CurrentMealInfoActivity.class);
@@ -257,10 +257,13 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
 
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Toast.makeText(Mess_ContentAcitivity.this,"No Data Found!",Toast.LENGTH_LONG).show();
         } catch (ExecutionException e) {
             e.printStackTrace();
+            Toast.makeText(Mess_ContentAcitivity.this,"No Data Found!",Toast.LENGTH_LONG).show();
         } catch (JSONException e) {
             e.printStackTrace();
+            Toast.makeText(Mess_ContentAcitivity.this,"No Data Found!",Toast.LENGTH_LONG).show();
         }
 
 
@@ -343,6 +346,8 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
     public void MealRecords(View v)
     {
 
+        getCurrentMonthYear();
+
         try{
             BackgroundWorker backgroundWorker = new BackgroundWorker(Mess_ContentAcitivity.this);
             System.out.println(">>>>>>>>    "+userName+"        >>>>>>>  "+selectedMonthNo+"           >>>>>>>>>>>>>>>  "+selectedYear);
@@ -356,8 +361,7 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
             StringBuffer buffer = new StringBuffer();
 
             if(jsonArray.length()<=0){
-                buffer.append("No Data Found!");
-                showMessage("MEAL INFORMATION",buffer.toString());
+                Toast.makeText(Mess_ContentAcitivity.this,"No Data Found!",Toast.LENGTH_LONG).show();
 
             } else{
                 Intent intent=new Intent(Mess_ContentAcitivity.this, MealInfoPerDayActivity.class);
@@ -367,10 +371,13 @@ public class Mess_ContentAcitivity extends AppCompatActivity {
 
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Toast.makeText(Mess_ContentAcitivity.this,"No Data Found!",Toast.LENGTH_LONG).show();
         } catch (ExecutionException e) {
             e.printStackTrace();
+            Toast.makeText(Mess_ContentAcitivity.this,"No Data Found!",Toast.LENGTH_LONG).show();
         } catch (JSONException e) {
             e.printStackTrace();
+            Toast.makeText(Mess_ContentAcitivity.this,"No Data Found!",Toast.LENGTH_LONG).show();
         }
 
 

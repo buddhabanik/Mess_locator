@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:text="Select month &amp; year"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/lightblue"
         android:textSize="20dp"
         android:id="@+id/textView_title"/>
 
@@ -36,11 +36,14 @@
 
     <Button
         android:text="Next"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinner_year"
         android:layout_marginTop="10dp"
-        android:id="@+id/button_next" />
+        android:id="@+id/button_next"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/custom_button01"/>
 
 
 </RelativeLayout>
