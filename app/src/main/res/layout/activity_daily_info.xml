@@ -129,7 +129,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textColor="@android:color/white"
-        android:background="@drawable/custom_button01"
+        android:background="@drawable/custom_button06"
         android:ems="8"/>
 
 </RelativeLayout>

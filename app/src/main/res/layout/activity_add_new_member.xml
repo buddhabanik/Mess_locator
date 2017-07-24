@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/green02"
     tools:context="com.example.buddha.mess_management.AddNewMember">
 
     <EditText
@@ -16,13 +17,14 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="43dp"
-        android:layout_marginStart="43dp"
         android:layout_marginTop="66dp"
+        android:layout_centerHorizontal="true"
         android:id="@+id/name_of_member"
-        android:hint="Name of Member" />
+        android:hint="Name of Member"
+        android:background="@drawable/shape_design_09"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -31,20 +33,22 @@
         android:ems="10"
         android:layout_marginTop="43dp"
         android:layout_below="@+id/name_of_member"
-        android:layout_alignLeft="@+id/name_of_member"
-        android:layout_alignStart="@+id/name_of_member"
+        android:layout_centerHorizontal="true"
         android:hint="Amount of Money"
-        android:id="@+id/amount_of_money" />
+        android:id="@+id/amount_of_money"
+        android:background="@drawable/shape_design_09"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"/>
 
     <Button
         android:text="Submit"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="43dp"
         android:id="@+id/Submit"
         android:layout_below="@+id/amount_of_money"
-        android:layout_alignLeft="@+id/amount_of_money"
-        android:layout_alignStart="@+id/amount_of_money"
-        android:layout_marginLeft="45dp"
-        android:layout_marginStart="45dp" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/custom_button05"/>
 </RelativeLayout>
