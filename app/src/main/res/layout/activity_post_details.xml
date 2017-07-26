@@ -129,7 +129,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         android:hint="Contact Number "
         android:textColor="@color/black01"
         android:id="@+id/editText_contractnumber"
@@ -144,11 +144,12 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editText_contractnumber"
+        android:layout_below="@id/textView_contactnumber"
         android:layout_alignParentRight="true"
         android:id="@+id/button_call"
         android:src="@drawable/ic_phone_black_24dp"
         android:background="@drawable/custom_button06"
+        android:layout_marginTop="8dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:paddingLeft="10dp"

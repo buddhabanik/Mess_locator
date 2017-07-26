@@ -1,13 +1,18 @@
 package com.example.buddha.mess_management;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.KeyListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
@@ -20,16 +25,17 @@ public class PostDetailsActivity extends AppCompatActivity {
     public String jsonData;
     public String previous;
 
-    EditText address_edit,rent_edit,numberOfSeat_edit,contactNumber_edit,description_edit;
-    Button edit_btn,save_btn,del_btn;
+    EditText address_edit, rent_edit, numberOfSeat_edit, contactNumber_edit, description_edit;
+    Button edit_btn, save_btn, del_btn;
+    ImageButton call_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_details);
 
-        SharedPreferences prefs = getSharedPreferences("MYPREFS",0);
-        USERNAME = prefs.getString("username","");
+        SharedPreferences prefs = getSharedPreferences("MYPREFS", 0);
+        USERNAME = prefs.getString("username", "");
         jsonData = getIntent().getExtras().getString("json_data");
 
         address_edit = (EditText) findViewById(R.id.editText_address);
@@ -40,6 +46,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         edit_btn = (Button) findViewById(R.id.button_edit);
         save_btn = (Button) findViewById(R.id.button_save);
         del_btn = (Button) findViewById(R.id.button_del);
+        call_btn = (ImageButton) findViewById(R.id.button_call);
 
         save_btn.setEnabled(false);
 
@@ -63,7 +70,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         id = getIntent().getExtras().getString("id");
         previous = getIntent().getExtras().getString("previous");
 
-        if(previous.equals("newpost")) {
+        if (previous.equals("newpost")) {
             edit_btn.setEnabled(false);
             save_btn.setEnabled(false);
             del_btn.setEnabled(false);
@@ -71,11 +78,40 @@ public class PostDetailsActivity extends AppCompatActivity {
             save_btn.setVisibility(View.INVISIBLE);
             del_btn.setVisibility(View.INVISIBLE);
         }
+        else if(previous.equals("mypost")){
+            call_btn.setEnabled(false);
+            call_btn.setVisibility(View.INVISIBLE);
+        }
 
         editButton();
         saveButton();
         delButton();
+        callButton();
     }
+
+    public void callButton() {
+        call_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+
+                intent.setData(Uri.parse("tel:" + getIntent().getExtras().getString("contactNumber") ));
+                if (ActivityCompat.checkSelfPermission(PostDetailsActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(intent);
+            }
+        });
+
+    }
+
 
     public void editButton(){
         edit_btn.setOnClickListener(new View.OnClickListener() {

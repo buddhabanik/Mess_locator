@@ -68,7 +68,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         android:hint="Contact Number"
         android:layout_below="@+id/editText_numberofseat"
         android:layout_marginTop="10dp"
