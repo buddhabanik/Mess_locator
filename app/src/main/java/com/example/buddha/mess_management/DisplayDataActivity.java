@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,6 +71,12 @@ public class DisplayDataActivity extends AppCompatActivity {
             jsonArray=jsonObject.getJSONArray("mess_info");
             int count=0;
             String id,address,rent,numberofseat,contractnumber,description;
+
+            if(jsonArray.length()==0){
+                Toast.makeText(DisplayDataActivity.this, "You have not posted yet", Toast.LENGTH_LONG).show();
+                finish();
+            }
+
             while(count<jsonArray.length() )
             {
                 JSONObject individual=jsonArray.getJSONObject(count);

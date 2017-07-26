@@ -12,185 +12,212 @@
     tools:context="com.example.buddha.mess_management.AddDataInformationActivity">
 
 
-        <TextView
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Detail Information"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView_title"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="delete"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button06"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignBaseline="@id/textView_title"
+        android:id="@+id/button_del"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address "
+        android:textColor="@color/white"
+        android:layout_below="@id/textView_title"
+        android:layout_marginTop="30dp"
+        android:id="@+id/textView_address"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="address"
+        android:textColor="@color/black01"
+        android:id="@+id/editText_address"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/textView_title"
+        android:layout_toRightOf="@id/textView_address"
+        android:layout_alignLeft="@id/editText_contractnumber"
+        android:layout_alignBaseline="@id/textView_address"
+        android:background="@drawable/shape_design_09"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rent "
+        android:textColor="@color/white"
+        android:layout_below="@id/textView_address"
+        android:layout_marginTop="23dp"
+        android:id="@+id/textView_rent"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="rent"
+        android:textColor="@color/black01"
+        android:id="@+id/editText_rent"
+        android:layout_below="@id/textView_address"
+        android:layout_toRightOf="@id/textView_rent"
+        android:layout_alignLeft="@id/editText_contractnumber"
+        android:layout_alignBaseline="@id/textView_rent"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_design_09"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of Seat "
+        android:textColor="@color/white"
+        android:layout_below="@id/textView_rent"
+        android:layout_marginTop="23dp"
+        android:id="@+id/textView_numberofseat"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Number Of Available Seat "
+        android:textColor="@color/black01"
+        android:ems="10"
+        android:layout_below="@+id/textView_rent"
+        android:layout_toRightOf="@id/textView_numberofseat"
+        android:layout_alignBaseline="@id/textView_numberofseat"
+        android:layout_marginTop="10dp"
+        android:id="@+id/editText_numberofseat"
+        android:layout_alignLeft="@id/editText_contractnumber"
+        android:background="@drawable/shape_design_09"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact number "
+        android:textColor="@color/white"
+        android:layout_below="@id/textView_numberofseat"
+        android:layout_marginTop="23dp"
+        android:id="@+id/textView_contactnumber" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Contact Number "
+        android:textColor="@color/black01"
+        android:id="@+id/editText_contractnumber"
+        android:layout_alignBaseline="@id/textView_contactnumber"
+        android:layout_toRightOf="@id/textView_contactnumber"
+        android:background="@drawable/shape_design_09"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText_contractnumber"
+        android:layout_alignParentRight="true"
+        android:id="@+id/button_call"
+        android:src="@drawable/ic_phone_black_24dp"
+        android:background="@drawable/custom_button06"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        />
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description "
+        android:textColor="@color/white"
+        android:layout_below="@id/textView_contactnumber"
+        android:layout_marginTop="23dp"
+        android:id="@+id/textView_description"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:hint="description"
+        android:textColor="@color/black01"
+        android:textAlignment="gravity"
+        android:gravity="start"
+        android:id="@+id/editText_description"
+        android:layout_below="@+id/textView_description"
+        android:layout_above="@id/buttons"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_design_09"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:id="@+id/buttons">
+        <Button
+            android:text="Edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="Detail Information"
             android:textColor="@color/white"
-            android:textSize="20dp"
-            android:id="@+id/textView_title"/>
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:id="@+id/button_edit"
+            android:layout_below="@+id/editText_description"
+            android:background="@drawable/custom_button01" />
 
-        <TextView
+        <Button
+            android:text="Save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Address "
             android:textColor="@color/white"
-            android:layout_below="@id/textView_title"
-            android:layout_marginTop="23dp"
-            android:id="@+id/textView_address"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="address"
-            android:textColor="@color/black01"
-            android:id="@+id/editText_address"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/textView_title"
-            android:layout_toRightOf="@id/textView_address"
-            android:layout_alignLeft="@id/editText_contractnumber"
-            android:layout_alignBaseline="@id/textView_address"
-            android:background="@drawable/shape_design_09"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/button_save"
+            android:layout_below="@+id/editText_description"
+            android:layout_toRightOf="@id/button_edit"
+            android:background="@drawable/custom_button01"
             />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rent "
-            android:textColor="@color/white"
-            android:layout_below="@id/textView_address"
-            android:layout_marginTop="23dp"
-            android:id="@+id/textView_rent"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="rent"
-            android:textColor="@color/black01"
-            android:id="@+id/editText_rent"
-            android:layout_below="@id/textView_address"
-            android:layout_toRightOf="@id/textView_rent"
-            android:layout_alignLeft="@id/editText_contractnumber"
-            android:layout_alignBaseline="@id/textView_rent"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shape_design_09"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Number of Seat "
-            android:textColor="@color/white"
-            android:layout_below="@id/textView_rent"
-            android:layout_marginTop="23dp"
-            android:id="@+id/textView_numberofseat"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Number Of Available Seat "
-            android:textColor="@color/black01"
-            android:ems="10"
-            android:layout_below="@+id/textView_rent"
-            android:layout_toRightOf="@id/textView_numberofseat"
-            android:layout_alignBaseline="@id/textView_numberofseat"
-            android:layout_marginTop="10dp"
-            android:id="@+id/editText_numberofseat"
-            android:layout_alignLeft="@id/editText_contractnumber"
-            android:background="@drawable/shape_design_09"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Contact number "
-            android:textColor="@color/white"
-            android:layout_below="@id/textView_numberofseat"
-            android:layout_marginTop="23dp"
-            android:id="@+id/textView_contactnumber" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Contact Number "
-            android:textColor="@color/black01"
-            android:ems="10"
-            android:layout_below="@+id/textView_numberofseat"
-            android:layout_toRightOf="@id/textView_contactnumber"
-            android:layout_alignBaseline="@id/textView_contactnumber"
-            android:layout_marginTop="10dp"
-            android:id="@+id/editText_contractnumber"
-            android:background="@drawable/shape_design_09"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description "
-            android:textColor="@color/white"
-            android:layout_below="@id/textView_contactnumber"
-            android:layout_marginTop="23dp"
-            android:id="@+id/textView_description"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:hint="description"
-            android:textColor="@color/black01"
-            android:textAlignment="gravity"
-            android:gravity="start"
-            android:id="@+id/editText_description"
-            android:layout_below="@+id/textView_description"
-            android:layout_above="@id/buttons"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shape_design_09"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"/>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:id="@+id/buttons">
-            <Button
-                android:text="Edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_weight="1"
-                android:layout_marginRight="5dp"
-                android:id="@+id/button_edit"
-                android:layout_below="@+id/editText_description"
-                android:background="@drawable/custom_button01" />
-
-            <Button
-                android:text="Save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_weight="1"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/button_save"
-                android:layout_below="@+id/editText_description"
-                android:layout_toRightOf="@id/button_edit"
-                android:background="@drawable/custom_button01"
-                />
-        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

@@ -21,7 +21,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     public String previous;
 
     EditText address_edit,rent_edit,numberOfSeat_edit,contactNumber_edit,description_edit;
-    Button edit_btn,save_btn;
+    Button edit_btn,save_btn,del_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         description_edit = (EditText) findViewById(R.id.editText_description);
         edit_btn = (Button) findViewById(R.id.button_edit);
         save_btn = (Button) findViewById(R.id.button_save);
+        del_btn = (Button) findViewById(R.id.button_del);
 
         save_btn.setEnabled(false);
 
@@ -65,27 +66,61 @@ public class PostDetailsActivity extends AppCompatActivity {
         if(previous.equals("newpost")) {
             edit_btn.setEnabled(false);
             save_btn.setEnabled(false);
+            del_btn.setEnabled(false);
             edit_btn.setVisibility(View.INVISIBLE);
             save_btn.setVisibility(View.INVISIBLE);
+            del_btn.setVisibility(View.INVISIBLE);
         }
 
         editButton();
         saveButton();
-
+        delButton();
     }
 
     public void editButton(){
         edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(PostDetailsActivity.this, "Edit Mode On", Toast.LENGTH_LONG).show();
-                address_edit.setKeyListener((KeyListener) address_edit.getTag());
-                rent_edit.setKeyListener((KeyListener) rent_edit.getTag());
-                numberOfSeat_edit.setKeyListener((KeyListener) numberOfSeat_edit.getTag());
-                contactNumber_edit.setKeyListener((KeyListener) contactNumber_edit.getTag());
-                description_edit.setKeyListener((KeyListener) description_edit.getTag());
-                save_btn.setEnabled(true);
-                edit_btn.setEnabled(false);
+            Toast.makeText(PostDetailsActivity.this, "Edit Mode On", Toast.LENGTH_LONG).show();
+            address_edit.setKeyListener((KeyListener) address_edit.getTag());
+            rent_edit.setKeyListener((KeyListener) rent_edit.getTag());
+            numberOfSeat_edit.setKeyListener((KeyListener) numberOfSeat_edit.getTag());
+            contactNumber_edit.setKeyListener((KeyListener) contactNumber_edit.getTag());
+            description_edit.setKeyListener((KeyListener) description_edit.getTag());
+            save_btn.setEnabled(true);
+            edit_btn.setEnabled(false);
+            }
+        });
+
+    }
+
+    public void delButton(){
+        del_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            String res = "";
+            try {
+                BackgroundWorker backgroundWorker = new BackgroundWorker(PostDetailsActivity.this);
+                res = backgroundWorker.execute("delMessInfo",id).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+
+            if(res.equals("data deleted")){
+                Toast.makeText(PostDetailsActivity.this, "Post Deleted", Toast.LENGTH_LONG).show();
+
+                DisplayDataActivity.DDA.finish();
+                BackgroundWorker backgroundWorker=new BackgroundWorker(PostDetailsActivity.this);
+                SharedPreferences prefs = getSharedPreferences("MYPREFS",0);
+                String user=prefs.getString("usernamePost","");
+                System.out.println(">>>>>>>>>>>>MyPost              .........."+user);
+                backgroundWorker.execute("showMypost", user);
+                finish();
+            }
+            else
+                Toast.makeText(PostDetailsActivity.this, "something is wrong", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -95,42 +130,42 @@ public class PostDetailsActivity extends AppCompatActivity {
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String address_text,rent_text,numberOfSeat_text,contactNumber_text,description_text;
-                address_text = address_edit.getText().toString();
-                rent_text = rent_edit.getText().toString();
-                numberOfSeat_text = numberOfSeat_edit.getText().toString();
-                contactNumber_text = contactNumber_edit.getText().toString();
-                description_text = description_edit.getText().toString();
+            String address_text,rent_text,numberOfSeat_text,contactNumber_text,description_text;
+            address_text = address_edit.getText().toString();
+            rent_text = rent_edit.getText().toString();
+            numberOfSeat_text = numberOfSeat_edit.getText().toString();
+            contactNumber_text = contactNumber_edit.getText().toString();
+            description_text = description_edit.getText().toString();
 
-                String res = "";
-                try {
-                    BackgroundWorker backgroundWorker = new BackgroundWorker(PostDetailsActivity.this);
-                    res = backgroundWorker.execute("updateMessInfo",id,address_text,rent_text,numberOfSeat_text,contactNumber_text,description_text).get();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
-                System.out.println(">>>>>>>>>>> "+res);
+            String res = "";
+            try {
+                BackgroundWorker backgroundWorker = new BackgroundWorker(PostDetailsActivity.this);
+                res = backgroundWorker.execute("updateMessInfo",id,address_text,rent_text,numberOfSeat_text,contactNumber_text,description_text).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            System.out.println(">>>>>>>>>>> "+res);
 
-                if(res.equals("data updated")){
-                    Toast.makeText(PostDetailsActivity.this, "Data is saved", Toast.LENGTH_LONG).show();
-                    address_edit.setTag(address_edit.getKeyListener());
-                    address_edit.setKeyListener(null);
-                    rent_edit.setTag(rent_edit.getKeyListener());
-                    rent_edit.setKeyListener(null);
-                    numberOfSeat_edit.setTag(numberOfSeat_edit.getKeyListener());
-                    numberOfSeat_edit.setKeyListener(null);
-                    contactNumber_edit.setTag(contactNumber_edit.getKeyListener());
-                    contactNumber_edit.setKeyListener(null);
-                    description_edit.setTag(description_edit.getKeyListener());
-                    description_edit.setKeyListener(null);
+            if(res.equals("data updated")){
+                Toast.makeText(PostDetailsActivity.this, "Data is saved", Toast.LENGTH_LONG).show();
+                address_edit.setTag(address_edit.getKeyListener());
+                address_edit.setKeyListener(null);
+                rent_edit.setTag(rent_edit.getKeyListener());
+                rent_edit.setKeyListener(null);
+                numberOfSeat_edit.setTag(numberOfSeat_edit.getKeyListener());
+                numberOfSeat_edit.setKeyListener(null);
+                contactNumber_edit.setTag(contactNumber_edit.getKeyListener());
+                contactNumber_edit.setKeyListener(null);
+                description_edit.setTag(description_edit.getKeyListener());
+                description_edit.setKeyListener(null);
 
-                    save_btn.setEnabled(false);
-                    edit_btn.setEnabled(true);
-                }
-                else
-                    Toast.makeText(PostDetailsActivity.this, "something is wrong", Toast.LENGTH_LONG).show();
+                save_btn.setEnabled(false);
+                edit_btn.setEnabled(true);
+            }
+            else
+                Toast.makeText(PostDetailsActivity.this, "something is wrong", Toast.LENGTH_LONG).show();
             }
         });
     }
